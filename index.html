@@ -10,13 +10,111 @@
         content="OfficeKit giúp tự động kiểm tra và sửa lỗi Nghị định 30, AI Audit thông minh và đọc số thành chữ chuẩn kế toán ngay trong Microsoft Word & Excel. Dùng thử miễn phí.">
     <meta name="keywords"
         content="OfficeKit, Nghị định 30, kiểm tra văn bản, AI Audit, đọc số thành chữ, Word add-in, Excel add-in">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://officekit-one.vercel.app/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://officekit.vn/">
-    <meta property="og:title" content="OfficeKit — Trợ lý soạn thảo văn bản chuẩn Nghị định 30">
+    <meta property="og:url" content="https://officekit-one.vercel.app/">
+    <meta property="og:title" content="OfficeKit — Trợ lý soạn thảo văn bản chuẩn Nghị định 30 & AI Audit">
     <meta property="og:description"
-        content="Kiểm tra lỗi Nghị định 30, sửa tự động 1-click, AI Audit kiểm soát nội dung ngay trong MS Word.">
+        content="Tự động kiểm tra và sửa lỗi Nghị định 30, AI Audit thông minh và đọc số thành chữ chuẩn kế toán ngay trong Microsoft Word & Excel.">
+    <meta property="og:image" content="https://officekit-one.vercel.app/officekit_preview.png">
+    <meta property="og:image:alt" content="OfficeKit AI Assistant Workspace and Audit Features Preview">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:site_name" content="OfficeKit">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://officekit-one.vercel.app/">
+    <meta name="twitter:title" content="OfficeKit — Trợ lý soạn thảo văn bản chuẩn Nghị định 30 & AI Audit">
+    <meta name="twitter:description"
+        content="Tự động kiểm tra và sửa lỗi Nghị định 30, AI Audit thông minh và đọc số thành chữ chuẩn kế toán ngay trong Microsoft Word & Excel.">
+    <meta name="twitter:image" content="https://officekit-one.vercel.app/officekit_preview.png">
+
+    <!-- JSON-LD Schema Markup (Structured Data) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://officekit-one.vercel.app/#website",
+          "url": "https://officekit-one.vercel.app/",
+          "name": "OfficeKit",
+          "description": "Trợ lý soạn thảo văn bản chuẩn Nghị định 30 & AI Audit",
+          "publisher": {
+            "@id": "https://officekit-one.vercel.app/#organization"
+          },
+          "inLanguage": "vi-VN"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://officekit-one.vercel.app/#organization",
+          "name": "OfficeKit Việt Nam",
+          "url": "https://officekit-one.vercel.app/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://officekit-one.vercel.app/favicon.svg"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+84-858-559-379",
+            "contactType": "customer support",
+            "areaServed": "VN",
+            "availableLanguage": "Vietnamese"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://officekit-one.vercel.app/#software",
+          "name": "OfficeKit",
+          "operatingSystem": "Windows, Web",
+          "applicationCategory": "BusinessApplication, OfficeApplication",
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "VND",
+            "lowPrice": "0",
+            "highPrice": "499000",
+            "offerCount": "3"
+          },
+          "description": "OfficeKit giúp tự động kiểm tra và sửa lỗi Nghị định 30, AI Audit thông minh và đọc số thành chữ chuẩn kế toán ngay trong Microsoft Word & Excel.",
+          "image": "https://officekit-one.vercel.app/officekit_preview.png"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://officekit-one.vercel.app/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "OfficeKit hoạt động trên các hệ điều hành và phiên bản Office nào?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "OfficeKit hỗ trợ đầy đủ trên Windows (tất cả các phiên bản Office từ 2016 trở lên, Office 365) và phiên bản Office trên nền web. Công cụ tích hợp trực tiếp như một Add-in tiêu chuẩn trên Ribbon của Microsoft Word và Excel."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Dữ liệu của tôi có được bảo mật không khi sử dụng tính năng AI Audit?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tuyệt đối bảo mật. Các tính năng kiểm tra Nghị định 30 cơ bản được xử lý trực tiếp ngoại tuyến (offline) trên máy tính của bạn. Đối với tính năng AI Audit, nội dung văn bản chỉ được gửi qua kết nối mã hóa an toàn tới Google Gemini API và hoàn toàn không lưu trữ lại dữ liệu người dùng trên bất kỳ máy chủ trung gian nào."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Tôi có thể sử dụng một giấy phép (license) trên nhiều thiết bị không?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Gói Standard và Pro AI được liên kết trực tiếp với địa chỉ Email kích hoạt của bạn. Bạn có thể sử dụng giấy phép này trên tối đa 2 thiết bị cá nhân (ví dụ: máy tính bàn làm việc ở cơ quan và máy tính xách tay cá nhân)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1604,7 +1702,7 @@
             <div class="nav-wrapper">
                 <a href="#" class="logo">
                     <!-- Microsoft Ribbon shape logo outline -->
-                    <svg viewBox="0 0 24 24">
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
                         <path
                             d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.12 0 2-.88 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
                     </svg>
@@ -1624,12 +1722,12 @@
                     <!-- Dark/Light Theme Toggle -->
                     <button class="theme-toggle" id="themeToggleBtn" aria-label="Chuyển chế độ giao diện">
                         <!-- Moon Icon -->
-                        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
                         <!-- Sun Icon -->
-                        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
                         </svg>
@@ -1661,7 +1759,7 @@
                     <div class="hero-cta">
                         <a href="#pricing" class="btn btn-primary">
                             Cài đặt dùng thử ngay (Miễn phí)
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -1684,14 +1782,14 @@
                     </div>
                     <div class="hero-meta">
                         <div class="hero-meta-item">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Hoạt động trực tiếp trên Word/Excel
                         </div>
                         <div class="hero-meta-item">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
                                 </path>
@@ -1751,7 +1849,7 @@
                 <div class="pain-card">
                     <div class="pain-icon-wrapper">
                         <!-- Book icon -->
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                             </path>
@@ -1765,7 +1863,7 @@
                 <div class="pain-card">
                     <div class="pain-icon-wrapper">
                         <!-- Clock icon -->
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
@@ -1778,7 +1876,7 @@
                 <div class="pain-card">
                     <div class="pain-icon-wrapper">
                         <!-- Alert icon -->
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                             </path>
@@ -1862,7 +1960,7 @@
                     <div class="sim-sidebar">
                         <div class="sidebar-header">
                             <!-- Shield check icon -->
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
                                 </path>
@@ -1874,12 +1972,12 @@
 
                             <div class="rule-item" id="ruleCountry">
                                 <div class="rule-icon">
-                                    <svg class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg aria-hidden="true" class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                                         </path>
                                     </svg>
-                                    <svg class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg aria-hidden="true" class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M5 13l4 4L19 7"></path>
                                     </svg>
@@ -1892,12 +1990,12 @@
 
                             <div class="rule-item" id="ruleTitle">
                                 <div class="rule-icon">
-                                    <svg class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg aria-hidden="true" class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                                         </path>
                                     </svg>
-                                    <svg class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg aria-hidden="true" class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M5 13l4 4L19 7"></path>
                                     </svg>
@@ -1911,12 +2009,12 @@
 
                             <div class="rule-item" id="ruleLayout">
                                 <div class="rule-icon">
-                                    <svg class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg aria-hidden="true" class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                                         </path>
                                     </svg>
-                                    <svg class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg aria-hidden="true" class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M5 13l4 4L19 7"></path>
                                     </svg>
@@ -1951,7 +2049,7 @@
                 <!-- Check NĐ 30 -->
                 <div class="feature-card">
                     <div class="feature-icon-wrapper blue-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
@@ -1964,7 +2062,7 @@
                 <!-- AI Audit -->
                 <div class="feature-card">
                     <div class="feature-icon-wrapper purple-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
@@ -1978,7 +2076,7 @@
                 <div class="feature-card">
                     <div class="feature-icon-wrapper green-icon">
                         <!-- Money icon -->
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
@@ -2178,23 +2276,23 @@
                 <div class="testimonial-card-v2">
                     <div>
                         <div class="testimonial-stars">
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
@@ -2218,23 +2316,23 @@
                 <div class="testimonial-card-v2">
                     <div>
                         <div class="testimonial-stars">
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
@@ -2258,23 +2356,23 @@
                 <div class="testimonial-card-v2">
                     <div>
                         <div class="testimonial-stars">
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
-                            <svg viewBox="0 0 20 20">
+                            <svg aria-hidden="true" viewBox="0 0 20 20">
                                 <path
                                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                             </svg>
@@ -2329,35 +2427,35 @@
                     <p class="price-desc">Trải nghiệm đầy đủ tất cả các tính năng cơ bản của OfficeKit.</p>
                     <ul class="price-features">
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Kiểm tra lỗi Nghị định 30
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Chuyển đổi phông chữ Unicode
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Giới hạn 10 lượt sử dụng/ngày
                         </li>
                         <li class="disabled">
-                            <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                             AI Audit thông minh (Gemini)
                         </li>
                         <li class="disabled">
-                            <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
@@ -2374,35 +2472,35 @@
                     <p class="price-desc">Giải pháp hoàn hảo cho cá nhân chuyên soạn thảo văn bản hành chính.</p>
                     <ul class="price-features">
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Kiểm tra lỗi Nghị định 30 (Không giới hạn)
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Chuyển đổi phông chữ VNI/TCVN3
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Đọc số thành chữ kế toán
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Kho 10+ mẫu văn bản hành chính
                         </li>
                         <li class="disabled">
-                            <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
@@ -2419,35 +2517,35 @@
                     <p class="price-desc">Trọn bộ tính năng đột phá bằng Trí tuệ nhân tạo AI nâng cao.</p>
                     <ul class="price-features">
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Mọi tính năng của gói Standard
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             <strong>AI Audit không giới hạn lượt</strong>
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Kho mẫu cá nhân đồng bộ Cloud
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
                             Hỗ trợ kỹ thuật ưu tiên 24/7
                         </li>
                         <li>
-                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7"></path>
                             </svg>
@@ -2472,7 +2570,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         OfficeKit hoạt động trên các hệ điều hành và phiên bản Office nào?
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg>
@@ -2487,7 +2585,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         Dữ liệu của tôi có được bảo mật không khi sử dụng tính năng AI Audit?
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg>
@@ -2503,7 +2601,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         Tôi có thể sử dụng một giấy phép (license) trên nhiều thiết bị không?
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg>
@@ -2524,7 +2622,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>
-                        <svg viewBox="0 0 24 24">
+                        <svg aria-hidden="true" viewBox="0 0 24 24">
                             <path
                                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.12 0 2-.88 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
                         </svg>
@@ -2572,7 +2670,7 @@
                 <div class="footer-socials">
                     <a href="https://www.facebook.com/profile.php?id=61587271752371" target="_blank"
                         rel="noopener noreferrer" aria-label="Facebook">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"
+                        <svg aria-hidden="true" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"
                             style="vertical-align: middle;">
                             <path
                                 d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
