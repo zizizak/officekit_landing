@@ -1,0 +1,2726 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfficeKit — Trợ lý soạn thảo văn bản chuẩn Nghị định 30 & AI Audit</title>
+    <meta name="description"
+        content="OfficeKit giúp tự động kiểm tra và sửa lỗi Nghị định 30, AI Audit thông minh và đọc số thành chữ chuẩn kế toán ngay trong Microsoft Word & Excel. Dùng thử miễn phí.">
+    <meta name="keywords"
+        content="OfficeKit, Nghị định 30, kiểm tra văn bản, AI Audit, đọc số thành chữ, Word add-in, Excel add-in">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://officekit.vn/">
+    <meta property="og:title" content="OfficeKit — Trợ lý soạn thảo văn bản chuẩn Nghị định 30">
+    <meta property="og:description"
+        content="Kiểm tra lỗi Nghị định 30, sửa tự động 1-click, AI Audit kiểm soát nội dung ngay trong MS Word.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Styling -->
+    <style>
+        :root {
+            /* Light theme variables */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --brand-primary: #0078d4;
+            --brand-hover: #106ebe;
+            --brand-light: #eff6fc;
+            --accent-purple: #8764b8;
+            --accent-green: #107c41;
+            --accent-green-light: #dff6dd;
+            --accent-red: #d13438;
+            --accent-red-light: #fde7e9;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+            --card-shadow-hover: 0 20px 40px -15px rgba(0, 72, 212, 0.12);
+            --transition-speed: 0.3s;
+            --font-main: 'Be Vietnam Pro', sans-serif;
+            --font-display: 'Lexend', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            /* Dark theme variables */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #131c2e;
+            --bg-tertiary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --brand-primary: #2b88d8;
+            --brand-hover: #479ef5;
+            --brand-light: rgba(43, 136, 216, 0.1);
+            --accent-purple: #a27cd4;
+            --accent-green: #1f9a55;
+            --accent-green-light: rgba(31, 154, 85, 0.15);
+            --accent-red: #e85c5c;
+            --accent-red-light: rgba(232, 92, 92, 0.15);
+            --border-color: #273549;
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+            --card-shadow-hover: 0 20px 40px -15px rgba(43, 136, 216, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* Utility Classes & Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            border: none;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, #005a9e 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-primary);
+            border: 2px solid var(--brand-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--brand-light);
+            transform: translateY(-2px);
+        }
+
+        /* Glassmorphic Header Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        [data-theme="dark"] header {
+            background-color: rgba(11, 15, 25, 0.8);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--brand-primary);
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--brand-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Theme Toggle switch */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--brand-primary);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 80px 0;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at top right, var(--brand-light) 0%, transparent 60%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background-color: var(--brand-light);
+            color: var(--brand-primary);
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 120, 212, 0.2);
+        }
+
+        .hero-badge span {
+            width: 8px;
+            height: 8px;
+            background-color: var(--brand-primary);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 580px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-meta-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-green);
+        }
+
+        /* Hero Image/Visual Mockup */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-visual-bg {
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(135, 100, 184, 0.15) 0%, rgba(0, 120, 212, 0.05) 50%, transparent 70%);
+            z-index: -1;
+            transform: rotate(-10deg);
+        }
+
+        .mockup-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 480px;
+            padding: 24px;
+            transition: transform var(--transition-speed);
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Pain Points Section */
+        .pain-points {
+            padding: 100px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .pain-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all var(--transition-speed);
+        }
+
+        .pain-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: rgba(209, 52, 56, 0.3);
+        }
+
+        .pain-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            background-color: var(--accent-red-light);
+            color: var(--accent-red);
+        }
+
+        .pain-icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .pain-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .pain-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* Interactive Simulator Section */
+        .simulator-section {
+            padding: 100px 0;
+            background-color: var(--bg-primary);
+        }
+
+        .simulator-window {
+            background-color: #1e293b;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            height: 520px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* OS Title Bar */
+        .sim-titlebar {
+            background-color: #0f172a;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .sim-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .sim-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .sim-dot-red {
+            background-color: #ef4444;
+        }
+
+        .sim-dot-yellow {
+            background-color: #f59e0b;
+        }
+
+        .sim-dot-green {
+            background-color: #10b981;
+        }
+
+        .sim-title {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Ribbon / Office Menu Mock */
+        .sim-ribbon {
+            background-color: #0f172a;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .sim-ribbon-tab {
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .sim-ribbon-tab.active {
+            background-color: var(--brand-primary);
+            color: white;
+        }
+
+        /* Workspace Grid */
+        .sim-workspace {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            flex: 1;
+            overflow: hidden;
+            background-color: #0f172a;
+        }
+
+        /* Document Page Area */
+        .sim-page-container {
+            background-color: #334155;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sim-word-page {
+            background-color: #ffffff;
+            color: #000000;
+            width: 100%;
+            max-width: 460px;
+            min-height: 550px;
+            padding: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            transition: all var(--transition-speed);
+        }
+
+        .sim-word-page.fixed {
+            font-family: 'Times New Roman', Times, serif !important;
+        }
+
+        /* Scan Effect overlay */
+        .scan-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 120, 212, 0.15) 50%, transparent 100%);
+            transform: translateY(-100%);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .scan-overlay.scanning {
+            animation: scanEffect 1.8s ease-in-out;
+        }
+
+        @keyframes scanEffect {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        /* Simulated Document Elements */
+        .doc-header-block {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            font-size: 11px;
+        }
+
+        .doc-gov {
+            text-align: center;
+        }
+
+        .gov-title {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .gov-sub {
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+            display: inline-block;
+        }
+
+        .gov-sub.fixed {
+            border-bottom-width: 1px !important;
+        }
+
+        .doc-country {
+            text-align: center;
+        }
+
+        .country-title {
+            font-weight: normal;
+        }
+
+        .scanned .country-title.error-hl {
+            border: 1px dashed var(--accent-red);
+            background-color: var(--accent-red-light);
+            padding: 1px 4px;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .country-title.fixed {
+            font-weight: bold !important;
+            text-transform: uppercase;
+            border: none !important;
+            background-color: transparent !important;
+            padding: 0;
+        }
+
+        .country-sub {
+            font-style: normal;
+        }
+
+        .scanned .country-sub.error-hl {
+            border: 1px dashed var(--accent-red);
+            background-color: var(--accent-red-light);
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+
+        .country-sub.fixed {
+            font-style: italic !important;
+            border: none !important;
+            background-color: transparent !important;
+            padding: 0;
+            text-decoration: underline;
+        }
+
+        .doc-meta {
+            margin-top: 10px;
+        }
+
+        .scanned .doc-meta.error-hl {
+            border: 1px dashed var(--accent-red);
+            background-color: var(--accent-red-light);
+            padding: 1px 4px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .doc-meta.fixed {
+            border: none !important;
+            background-color: transparent !important;
+            padding: 0;
+            display: block;
+        }
+
+        .doc-body-block {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .doc-title {
+            font-size: 15px;
+            font-weight: normal;
+            font-family: 'Comic Sans MS', sans-serif;
+            text-transform: lowercase;
+        }
+
+        .scanned .doc-title.error-hl {
+            border: 1px dashed var(--accent-red);
+            background-color: var(--accent-red-light);
+            padding: 2px 6px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .doc-title.fixed {
+            font-family: 'Times New Roman', serif !important;
+            font-weight: bold !important;
+            font-size: 16px !important;
+            text-transform: uppercase !important;
+            border: none !important;
+            background-color: transparent !important;
+            padding: 0;
+            display: block;
+        }
+
+        .doc-p {
+            text-align: left;
+            margin-top: 24px;
+            font-size: 12px;
+            text-indent: 0;
+            line-height: 1.15;
+        }
+
+        .scanned .doc-p.error-hl {
+            border: 1px dashed var(--accent-red);
+            background-color: var(--accent-red-light);
+            padding: 2px 6px;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .doc-p.fixed {
+            text-indent: 1.27cm !important;
+            line-height: 1.5 !important;
+            font-size: 14px !important;
+            border: none !important;
+            background-color: transparent !important;
+            padding: 0;
+        }
+
+        /* Sidebar Mockup */
+        .sim-sidebar {
+            background-color: #111827;
+            border-left: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 16px;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .sidebar-header svg {
+            width: 18px;
+            height: 18px;
+            color: var(--brand-primary);
+        }
+
+        .sidebar-content {
+            padding: 16px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .status-badge {
+            background-color: #374151;
+            color: #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .status-badge.fixed {
+            background-color: #065f46;
+            color: #a7f3d0;
+        }
+
+        .rule-item {
+            display: none;
+            background-color: #1f2937;
+            border-left: 3px solid #6b7280;
+            padding: 10px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #9ca3af;
+            align-items: flex-start;
+            gap: 8px;
+            transition: all var(--transition-speed);
+        }
+
+        .rule-item.visible,
+        .rule-item.fixed {
+            display: flex;
+        }
+
+        .rule-item.error {
+            border-left-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        .rule-item.fixed {
+            border-left-color: #10b981;
+            color: #a7f3d0;
+            background-color: rgba(16, 185, 129, 0.05);
+        }
+
+        .rule-icon {
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rule-icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .rule-icon-check {
+            display: none;
+            color: #10b981;
+        }
+
+        .rule-icon-warn {
+            display: block;
+            color: #ef4444;
+        }
+
+        .rule-item.fixed .rule-icon-check {
+            display: block;
+        }
+
+        .rule-item.fixed .rule-icon-warn {
+            display: none;
+        }
+
+        .sidebar-actions {
+            padding: 16px;
+            border-top: 1px solid #1e293b;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sim-btn {
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            transition: all var(--transition-speed);
+        }
+
+        .sim-btn-scan {
+            background-color: #374151;
+            color: white;
+        }
+
+        .sim-btn-scan:hover {
+            background-color: #4b5563;
+        }
+
+        .sim-btn-fix {
+            background-color: var(--brand-primary);
+            color: white;
+            display: none;
+        }
+
+        .sim-btn-fix:hover {
+            background-color: var(--brand-hover);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 32px;
+            transition: all var(--transition-speed);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: rgba(0, 120, 212, 0.2);
+        }
+
+        .feature-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .feature-icon-wrapper svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .blue-icon {
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+        }
+
+        .purple-icon {
+            background: linear-gradient(135deg, #8764b8 0%, #684b94 100%);
+        }
+
+        .green-icon {
+            background: linear-gradient(135deg, #107c41 0%, #0b592e 100%);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* Social Proof / Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--bg-primary);
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: "“";
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-size: 120px;
+            color: var(--brand-light);
+            font-family: serif;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--brand-light);
+            color: var(--brand-primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            color: var(--text-primary);
+            text-align: left;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: left;
+        }
+
+        /* Testimonials Grid */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card-v2 {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all var(--transition-speed);
+        }
+
+        .testimonial-card-v2:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: rgba(0, 120, 212, 0.2);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+            color: #ffb900;
+        }
+
+        .testimonial-stars svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Trust Stats */
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--brand-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all var(--transition-speed);
+        }
+
+        .price-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--brand-primary);
+            background-color: var(--bg-secondary);
+            box-shadow: var(--card-shadow);
+        }
+
+        .price-card.popular::before {
+            content: "KHUYÊN DÙNG";
+            position: absolute;
+            top: -14px;
+            right: 24px;
+            background-color: var(--brand-primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .price-tier {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .popular .price-tier {
+            color: var(--brand-primary);
+        }
+
+        .price-value {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .price-value span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .price-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .price-features li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li.disabled {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .price-features svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .price-features .icon-check {
+            color: var(--accent-green);
+        }
+
+        .price-features .icon-close {
+            color: var(--text-muted);
+        }
+
+        .price-card .btn {
+            width: 100%;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background-color: var(--bg-primary);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color var(--transition-speed);
+        }
+
+        .faq-item:hover {
+            border-color: var(--brand-primary);
+        }
+
+        .faq-question {
+            padding: 24px;
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-question svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            transition: transform var(--transition-speed);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed) ease-out;
+            padding: 0 24px;
+        }
+
+        .faq-answer p {
+            padding-bottom: 24px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+            color: var(--brand-primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b0f19;
+            color: #94a3b8;
+            padding: 80px 0 40px 0;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 22px;
+            color: #f8fafc;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand h3 svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--brand-primary);
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .footer-col h4 {
+            color: #f8fafc;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 40px;
+            border-top: 1px solid #1e293b;
+            font-size: 13px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            transition: all var(--transition-speed);
+        }
+
+        .footer-socials a:hover {
+            background-color: var(--brand-primary);
+            color: white;
+        }
+
+        /* Decree 30 Checklist Styling */
+        .nd30-checklist-section {
+            padding: 100px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .checklist-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-family: var(--font-display);
+            transition: all var(--transition-speed);
+        }
+
+        .tab-btn:hover {
+            color: var(--brand-primary);
+            border-color: var(--brand-primary);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background-color: var(--brand-primary);
+            color: white;
+            border-color: var(--brand-primary);
+            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .checklist-item {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: all var(--transition-speed);
+        }
+
+        .checklist-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow);
+            border-color: rgba(16, 124, 65, 0.2);
+        }
+
+        .check-icon {
+            background-color: var(--accent-green-light);
+            color: var(--accent-green);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .check-text h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .check-text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-meta {
+                justify-content: center;
+            }
+
+            .pain-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                gap: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                /* simple burger setup can be added if needed, or hide links on mob */
+            }
+
+            .nav-wrapper {
+                height: 70px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .sim-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .sim-sidebar {
+                border-left: none;
+                border-top: 1px solid #334155;
+                height: 220px;
+            }
+
+            .sim-page-container {
+                padding: 15px;
+            }
+
+            .simulator-window {
+                height: 620px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Navbar -->
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="logo">
+                    <!-- Microsoft Ribbon shape logo outline -->
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.12 0 2-.88 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                    </svg>
+                    OfficeKit
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#features">Tính năng</a></li>
+                    <li><a href="#simulator">Trải nghiệm thực tế</a></li>
+                    <li><a href="#checklist">Checklist NĐ 30</a></li>
+                    <li><a href="#pricing">Bảng giá</a></li>
+                    <li><a href="#faq">Hỏi đáp</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <!-- Dark/Light Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggleBtn" aria-label="Chuyển chế độ giao diện">
+                        <!-- Moon Icon -->
+                        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                        <!-- Sun Icon -->
+                        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                        </svg>
+                    </button>
+
+                    <a href="#pricing" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Tải bản
+                        Beta</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span></span> Hot: Phiên bản 4.0 Beta (2026)
+                    </div>
+                    <h1 class="hero-title">
+                        Trợ lý soạn thảo văn bản <br>
+                        <span>Chuẩn Nghị định 30 & AI Audit</span>
+                    </h1>
+                    <p class="hero-description">
+                        Công cụ nền tảng hỗ trợ soạn thảo thông minh và chuẩn xác ngay trong Microsoft Word. Không còn
+                        phải copy-paste sang ChatGPT/Gemini, OfficeKit luôn sẵn sàng đồng hành cùng bạn.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#pricing" class="btn btn-primary">
+                            Cài đặt dùng thử ngay (Miễn phí)
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                        <a href="#simulator" class="btn btn-secondary">Xem Demo Tương Tác</a>
+                    </div>
+                    <div
+                        style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <span>Cần hỗ trợ cài đặt?</span>
+                        <a href="tel:0858559379" style="color: var(--brand-primary); text-decoration: underline;">Gọi
+                            085 855 9379</a>
+                        <span>•</span>
+                        <a href="mailto:laptrinhvui.official@gmail.com"
+                            style="color: var(--brand-primary); text-decoration: underline;">Gửi Email</a>
+                        <span>•</span>
+                        <a href="https://www.facebook.com/profile.php?id=61587271752371" target="_blank"
+                            rel="noopener noreferrer"
+                            style="color: var(--brand-primary); text-decoration: underline;">Facebook Page</a>
+                    </div>
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Hoạt động trực tiếp trên Word/Excel
+                        </div>
+                        <div class="hero-meta-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg>
+                            Bảo mật dữ liệu tuyệt đối
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-visual-bg"></div>
+                    <div class="mockup-card">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <span
+                                style="font-weight: 700; color: var(--brand-primary); font-family: var(--font-display);">OfficeKit
+                                AI Check</span>
+                            <span
+                                style="font-size: 12px; background-color: var(--accent-green-light); color: var(--accent-green); padding: 4px 8px; border-radius: 4px; font-weight: 600;">Active</span>
+                        </div>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
+                            "Kiểm tra tính logic, lỗi chính tả và thể thức văn bản hành chính theo Nghị định
+                            30/2020/NĐ-CP."
+                        </p>
+                        <div style="border-top: 1px solid var(--border-color); padding-top: 16px;">
+                            <div
+                                style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 13px;">
+                                <span>Lỗi thể thức phông chữ:</span>
+                                <strong style="color: var(--accent-red);">Phát hiện (3)</strong>
+                            </div>
+                            <div
+                                style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                                <span>Sai khoảng cách lề:</span>
+                                <strong style="color: var(--accent-red);">Phát hiện (1)</strong>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary"
+                            style="width: 100%; margin-top: 20px; font-size: 14px; padding: 10px;"
+                            onclick="document.getElementById('simulator').scrollIntoView();">
+                            Thử Trình Giả Lập Quét Lỗi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bạn có đang gặp những "cực hình" này mỗi ngày?</h2>
+                <p>Công việc văn phòng, soạn thảo văn bản hành chính tốn hàng giờ của bạn chỉ vì những lỗi nhỏ không
+                    đáng có.</p>
+            </div>
+
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon-wrapper">
+                        <!-- Book icon -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Rối não vì Nghị định 30</h3>
+                    <p>Soạn cái công văn mà phải lật giở từng trang hướng dẫn để xem lề bao nhiêu, font bao nhiêu, tiêu
+                        ngữ đặt đâu cho đúng? Rất dễ nhầm lẫn.</p>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-icon-wrapper">
+                        <!-- Clock icon -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3>Mất thời gian định dạng</h3>
+                    <p>Căn chỉnh lề lối thủ công cực nhọc, chỉnh từng block text, đổi từng font chữ TCVN3/VNI sang
+                        Unicode tiêu chuẩn của Bộ Nội vụ tốn cả tiếng đồng hồ.</p>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-icon-wrapper">
+                        <!-- Alert icon -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Sợ sai số liệu, logic</h3>
+                    <p>Văn bản dài hàng chục trang trình ký, kiểm tra đi kiểm tra lại vẫn sợ nhầm ngày tháng, sai lỗi
+                        chính tả hoặc sai số tiền quy đổi chữ?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulator Section -->
+    <section class="simulator-section" id="simulator">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trải nghiệm trực quan OfficeKit</h2>
+                <p>Xem cách OfficeKit hoạt động trực tiếp trong Word để rà soát lỗi thể thức và sửa tự động chỉ trong
+                    1-Click.</p>
+            </div>
+
+            <div class="simulator-window">
+                <!-- Titlebar -->
+                <div class="sim-titlebar">
+                    <div class="sim-dots">
+                        <span class="sim-dot sim-dot-red"></span>
+                        <span class="sim-dot sim-dot-yellow"></span>
+                        <span class="sim-dot sim-dot-green"></span>
+                    </div>
+                    <div class="sim-title">cong-van-trinh-ky.docx — Microsoft Word</div>
+                    <div style="width: 48px;"></div>
+                </div>
+
+                <!-- Word Ribbon Mockup -->
+                <div class="sim-ribbon">
+                    <span class="sim-ribbon-tab">Trang chủ</span>
+                    <span class="sim-ribbon-tab">Chèn</span>
+                    <span class="sim-ribbon-tab">Bố trí</span>
+                    <span class="sim-ribbon-tab active">OfficeKit</span>
+                </div>
+
+                <!-- Main workspace layout -->
+                <div class="sim-workspace">
+
+                    <!-- Paper Workspace -->
+                    <div class="sim-page-container">
+                        <div class="sim-word-page" id="wordPage">
+                            <!-- Scanning beam -->
+                            <div class="scan-overlay" id="scanBeam"></div>
+
+                            <!-- Header Block -->
+                            <div class="doc-header-block">
+                                <div class="doc-gov">
+                                    <div class="gov-title">UBND XÃ DEMO</div>
+                                    <div class="gov-sub" id="govSub">BAN VĂN THƯ</div>
+                                </div>
+                                <div class="doc-country">
+                                    <div class="country-title error-hl" id="countryTitle">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT
+                                        NAM</div>
+                                    <div class="country-sub error-hl" id="countrySub">Độc lập - Tự do - Hạnh phúc</div>
+                                    <div class="doc-meta error-hl" id="docMeta">Số: 124 /BC-UBND, ngày 08 tháng 7 năm
+                                        2026</div>
+                                </div>
+                            </div>
+
+                            <!-- Document Body -->
+                            <div class="doc-body-block">
+                                <div class="doc-title error-hl" id="docTitle">báo cáo kết quả công tác hành chính quý
+                                    II/2026</div>
+                                <div class="doc-p error-hl" id="docP">
+                                    căn cứ vào nghị định số 30/2020/NĐ-CP của Chính phủ về công tác văn thư, văn phòng
+                                    báo cáo tiến độ chuẩn hóa tài liệu và nâng cấp cơ sở dữ liệu hạ tầng công nghệ thông
+                                    tin. Các văn bản hiện nay đang được số hóa hoàn toàn.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add-in Sidebar -->
+                    <div class="sim-sidebar">
+                        <div class="sidebar-header">
+                            <!-- Shield check icon -->
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg>
+                            OfficeKit NĐ30 Checker
+                        </div>
+                        <div class="sidebar-content">
+                            <div class="status-badge" id="sidebarStatus">Nhấn quét để kiểm tra tài liệu</div>
+
+                            <div class="rule-item" id="ruleCountry">
+                                <div class="rule-icon">
+                                    <svg class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                                        </path>
+                                    </svg>
+                                    <svg class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>Quốc hiệu viết hoa</strong>
+                                    <div style="font-size: 10px; margin-top: 2px;">Cần viết hoa toàn bộ và in đậm.</div>
+                                </div>
+                            </div>
+
+                            <div class="rule-item" id="ruleTitle">
+                                <div class="rule-icon">
+                                    <svg class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                                        </path>
+                                    </svg>
+                                    <svg class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>Tên văn bản in hoa</strong>
+                                    <div style="font-size: 10px; margin-top: 2px;">Tên báo cáo cần in hoa đậm và đổi
+                                        font sang Times New Roman.</div>
+                                </div>
+                            </div>
+
+                            <div class="rule-item" id="ruleLayout">
+                                <div class="rule-icon">
+                                    <svg class="rule-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                                        </path>
+                                    </svg>
+                                    <svg class="rule-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>Đoạn văn thụt đầu dòng</strong>
+                                    <div style="font-size: 10px; margin-top: 2px;">Cần thụt đầu dòng 1.27cm & cách dòng
+                                        1.5.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar-actions">
+                            <button class="sim-btn sim-btn-scan" id="simScanBtn">Quét lỗi văn bản</button>
+                            <button class="sim-btn sim-btn-fix" id="simFixBtn">Sửa lỗi (1-Click)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Một công cụ - Bảo vệ sự chuyên nghiệp của bạn</h2>
+                <p>OfficeKit là một giải pháp tích hợp sâu vào MS Word & Excel, mang đến bộ tính năng trợ giúp đắc lực.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Check NĐ 30 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper blue-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3>Check & Fix Nghị định 30</h3>
+                    <p>Tự động rà soát khổ giấy, lề văn bản, font chữ, quốc hiệu, tiêu ngữ, căn chỉnh thụt dòng và sửa
+                        lỗi chỉ trong 1 click chuột theo đúng tiêu chuẩn hành chính.</p>
+                </div>
+
+                <!-- AI Audit -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper purple-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3>AI Audit thông minh</h3>
+                    <p>Tích hợp mô hình ngôn ngữ lớn (Gemini) để đọc hiểu văn bản, phát hiện lỗi mâu thuẫn số liệu, sai
+                        lệch ngày tháng và cải tiến văn phong hành chính chỉn chu hơn.</p>
+                </div>
+
+                <!-- Đọc số thành chữ -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper green-icon">
+                        <!-- Money icon -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3>Đọc số chuẩn kế toán</h3>
+                    <p>Chuyển đổi số tiền thành chữ tự động trong Excel & Word nhanh chóng. Đảm bảo đúng chính tả ngôn
+                        ngữ tiếng Việt quy chuẩn kế toán (lăm/nhăm, mốt, linh/lẻ).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decree 30 Checklist Section -->
+    <section class="nd30-checklist-section" id="checklist">
+        <div class="container">
+            <div class="section-header">
+                <h2>Checklist Quy Chuẩn Nghị Định 30/2020/NĐ-CP</h2>
+                <p>OfficeKit tự động kiểm soát và chuẩn hóa toàn bộ 23+ quy tắc thể thức văn bản hành chính theo đúng
+                    quy chuẩn pháp luật.</p>
+            </div>
+
+            <div class="checklist-tabs">
+                <button class="tab-btn active" onclick="switchChecklistTab(event, 'tab-margins')">Khổ giấy & Căn
+                    lề</button>
+                <button class="tab-btn" onclick="switchChecklistTab(event, 'tab-font')">Phông chữ & Trình bày</button>
+                <button class="tab-btn" onclick="switchChecklistTab(event, 'tab-structure')">Quốc hiệu & Tiêu
+                    ngữ</button>
+                <button class="tab-btn" onclick="switchChecklistTab(event, 'tab-authority')">Ký tên & Đóng dấu</button>
+            </div>
+
+            <div class="tab-content active" id="tab-margins">
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Khổ giấy tiêu chuẩn A4</h4>
+                            <p>Toàn bộ văn bản phải trình bày trên khổ giấy A4 (210 mm x 297 mm) với dung sai cho phép
+                                cực nhỏ.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Căn lề trên (Top margin)</h4>
+                            <p>Khoảng cách từ mép trên đến dòng đầu tiên: từ 20 mm đến 25 mm (2.0 cm - 2.5 cm).</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Căn lề dưới (Bottom margin)</h4>
+                            <p>Khoảng cách từ mép dưới đến dòng cuối cùng: từ 20 mm đến 25 mm (2.0 cm - 2.5 cm).</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Căn lề trái (Left margin)</h4>
+                            <p>Khoảng cách từ mép trái đến chữ đầu tiên: từ 30 mm đến 35 mm (3.0 cm - 3.5 cm) để chừa lề
+                                đóng ghim.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Căn lề phải (Right margin)</h4>
+                            <p>Khoảng cách từ mép phải đến chữ cuối cùng: từ 15 mm đến 20 mm (1.5 cm - 2.0 cm).</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Hướng giấy tiêu chuẩn</h4>
+                            <p>Trình bày theo chiều dọc đứng của khổ giấy. Trường hợp nội dung có bảng biểu rộng mới
+                                được đặt chiều ngang.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-font">
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Phông chữ Unicode Times New Roman</h4>
+                            <p>Bắt buộc sử dụng phông chữ Times New Roman, bộ mã ký tự Unicode tiêu chuẩn theo chuẩn
+                                Việt Nam TCVN 6909:2001.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Cỡ chữ nội dung (13pt - 14pt)</h4>
+                            <p>Phần nội dung văn bản sử dụng cỡ chữ 13 hoặc 14, màu đen đứng, giãn dòng tự động 1.5
+                                lines hoặc Exactly 13.5pt - 15pt.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Đánh số trang văn bản</h4>
+                            <p>Đánh số trang từ trang thứ hai bằng chữ số Ả-rập, đặt canh giữa ở đầu trang (header) với
+                                cỡ chữ 13 - 14 đứng, không hiển thị ở trang một.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Canh lề đoạn văn (Justify)</h4>
+                            <p>Nội dung văn bản phải canh đều cả hai lề trái và phải. Dòng đầu tiên của đoạn văn thụt lề
+                                vào 1.27 cm (hoặc 1 tab tiêu chuẩn).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-structure">
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Quốc hiệu viết hoa & in đậm</h4>
+                            <p>"CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM" viết bằng chữ in hoa, cỡ chữ 12 đến 13, in đậm, đặt
+                                ở phía trên bên phải.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Tiêu ngữ viết hoa chữ cái đầu</h4>
+                            <p>"Độc lập - Tự do - Hạnh phúc" viết bằng chữ in thường, cỡ chữ 13 đến 14, in đậm, có đường
+                                gạch chân nét liền dài bằng độ dài tiêu ngữ.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Cơ quan ban hành in hoa đậm</h4>
+                            <p>Tên cơ quan ban hành văn bản viết bằng chữ in hoa, cỡ chữ 12 đến 13, in đậm, đặt phía
+                                trên bên trái có dòng kẻ ngắn bên dưới.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Số và ký hiệu văn bản</h4>
+                            <p>Số ghi bằng chữ số Ả-rập, ký hiệu viết tắt theo loại văn bản và cơ quan (Ví dụ: Số:
+                                12/QĐ-UBND, Số: 45/BC-VP).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-authority">
+                <div class="checklist-grid">
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Chức vụ người ký in hoa đậm</h4>
+                            <p>Chức vụ người ký (Ví dụ: CHỦ TỊCH, GIÁM ĐỐC) viết bằng chữ in hoa, in đậm, cỡ chữ 13 đến
+                                14 đứng.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Họ tên người ký in thường đậm</h4>
+                            <p>Họ tên người ký viết bằng chữ in thường, in đậm, cỡ chữ 13 đến 14 đứng, đặt cân đối dưới
+                                chức danh ký.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">
+                            <h4>Đóng dấu cơ quan hoặc chữ ký số</h4>
+                            <p>Dấu đóng ngay ngắn vào 1/3 chữ ký về phía bên trái. Nếu sử dụng văn bản điện tử phải có
+                                chữ ký số theo đúng quy định.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Social Proof -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Khách hàng nói gì về OfficeKit?</h2>
+                <p>Hàng ngàn công chức, viên chức, chuyên viên văn thư và kế toán đã nâng cao hiệu suất công việc vượt
+                    bậc.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card-v2">
+                    <div>
+                        <div class="testimonial-stars">
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                        </div>
+                        <p class="testimonial-text"
+                            style="font-size: 15px; text-align: left; margin-bottom: 20px; font-style: italic;">
+                            "Từ khi dùng OfficeKit, tôi không còn phải lo lắng mỗi khi trình ký văn bản. Tính năng AI
+                            Audit giúp tôi phát hiện ra các lỗi ngày tháng và số liệu mâu thuẫn cực kỳ nhanh."
+                        </p>
+                    </div>
+                    <div class="testimonial-author" style="justify-content: flex-start;">
+                        <div class="author-avatar">TL</div>
+                        <div class="author-info">
+                            <h4>Chị Lan</h4>
+                            <p>Kế toán trưởng, Đơn vị HCSN</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card-v2">
+                    <div>
+                        <div class="testimonial-stars">
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                        </div>
+                        <p class="testimonial-text"
+                            style="font-size: 15px; text-align: left; margin-bottom: 20px; font-style: italic;">
+                            "Tôi từng tốn cả tiếng chỉ để đổi phông chữ VNI sang Unicode và chỉnh lề theo Nghị định 30.
+                            Giờ đây chỉ cần quét và sửa tự động trong 1 giây. Rất chuyên nghiệp và hữu ích!"
+                        </p>
+                    </div>
+                    <div class="testimonial-author" style="justify-content: flex-start;">
+                        <div class="author-avatar">AM</div>
+                        <div class="author-info">
+                            <h4>Anh Minh</h4>
+                            <p>Chuyên viên Văn thư, Cơ quan Nhà nước</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card-v2">
+                    <div>
+                        <div class="testimonial-stars">
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                        </div>
+                        <p class="testimonial-text"
+                            style="font-size: 15px; text-align: left; margin-bottom: 20px; font-style: italic;">
+                            "Gói Pro AI thật sự đáng tiền. Tôi thường xuyên viết công văn gấp, AI Audit hỗ trợ viết lại
+                            câu từ chuyên nghiệp, mượt mà chuẩn văn phong hành chính nhà nước."
+                        </p>
+                    </div>
+                    <div class="testimonial-author" style="justify-content: flex-start;">
+                        <div class="author-avatar">HV</div>
+                        <div class="author-info">
+                            <h4>Chị Vy</h4>
+                            <p>Trợ lý Pháp lý, Doanh nghiệp tư nhân</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1,000+</div>
+                    <div class="stat-label">Dân văn phòng tin dùng</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">23+</div>
+                    <div class="stat-label">Quy tắc chuẩn Nghị định 30</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30s</div>
+                    <div class="stat-label">Thời gian cài đặt & sử dụng</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lựa chọn gói phù hợp</h2>
+                <p>Sở hữu trợ lý đắc lực bảo vệ sự chuyên nghiệp của bạn chỉ từ 600đ mỗi ngày.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Trial -->
+                <div class="price-card">
+                    <div class="price-tier">Dùng thử</div>
+                    <div class="price-value">0đ <span>/ 7 ngày</span></div>
+                    <p class="price-desc">Trải nghiệm đầy đủ tất cả các tính năng cơ bản của OfficeKit.</p>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Kiểm tra lỗi Nghị định 30
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Chuyển đổi phông chữ Unicode
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Giới hạn 10 lượt sử dụng/ngày
+                        </li>
+                        <li class="disabled">
+                            <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            AI Audit thông minh (Gemini)
+                        </li>
+                        <li class="disabled">
+                            <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            Thư viện biểu mẫu đồng bộ Cloud
+                        </li>
+                    </ul>
+                    <button class="btn btn-secondary">Đăng ký dùng thử</button>
+                </div>
+
+                <!-- Standard -->
+                <div class="price-card">
+                    <div class="price-tier">Standard</div>
+                    <div class="price-value">249.000đ <span>/ năm</span></div>
+                    <p class="price-desc">Giải pháp hoàn hảo cho cá nhân chuyên soạn thảo văn bản hành chính.</p>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Kiểm tra lỗi Nghị định 30 (Không giới hạn)
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Chuyển đổi phông chữ VNI/TCVN3
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Đọc số thành chữ kế toán
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Kho 10+ mẫu văn bản hành chính
+                        </li>
+                        <li class="disabled">
+                            <svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            AI Audit thông minh (Giới hạn)
+                        </li>
+                    </ul>
+                    <button class="btn btn-outline">Chọn gói Standard</button>
+                </div>
+
+                <!-- Pro AI -->
+                <div class="price-card popular">
+                    <div class="price-tier">Pro AI</div>
+                    <div class="price-value">499.000đ <span>/ năm</span></div>
+                    <p class="price-desc">Trọn bộ tính năng đột phá bằng Trí tuệ nhân tạo AI nâng cao.</p>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Mọi tính năng của gói Standard
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <strong>AI Audit không giới hạn lượt</strong>
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Kho mẫu cá nhân đồng bộ Cloud
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Hỗ trợ kỹ thuật ưu tiên 24/7
+                        </li>
+                        <li>
+                            <svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Cập nhật tính năng tự động mới nhất
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary">Nâng cấp ngay</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Câu hỏi thường gặp</h2>
+                <p>Một số thông tin giải đáp thắc mắc liên quan tới quy trình cài đặt và tính năng của OfficeKit.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        OfficeKit hoạt động trên các hệ điều hành và phiên bản Office nào?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>OfficeKit hỗ trợ đầy đủ trên Windows (tất cả các phiên bản Office từ 2016 trở lên, Office
+                            365) và phiên bản Office trên nền web. Công cụ tích hợp trực tiếp như một Add-in tiêu chuẩn
+                            trên Ribbon của Microsoft Word và Excel.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Dữ liệu của tôi có được bảo mật không khi sử dụng tính năng AI Audit?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tuyệt đối bảo mật. Các tính năng kiểm tra Nghị định 30 cơ bản được xử lý trực tiếp ngoại
+                            tuyến (offline) trên máy tính của bạn. Đối với tính năng AI Audit, nội dung văn bản chỉ được
+                            gửi qua kết nối mã hóa an toàn tới Google Gemini API và hoàn toàn không lưu trữ lại dữ liệu
+                            người dùng trên bất kỳ máy chủ trung gian nào.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Tôi có thể sử dụng một giấy phép (license) trên nhiều thiết bị không?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Gói Standard và Pro AI được liên kết trực tiếp với địa chỉ Email kích hoạt của bạn. Bạn có
+                            thể sử dụng giấy phép này trên tối đa 2 thiết bị cá nhân (ví dụ: máy tính bàn làm việc ở cơ
+                            quan và máy tính xách tay cá nhân).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.12 0 2-.88 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                        </svg>
+                        OfficeKit
+                    </h3>
+                    <p>Bộ công cụ chuyên biệt hỗ trợ dân văn phòng Việt Nam tối ưu hóa quy trình làm việc trên văn bản
+                        hành chính theo các thông tư, nghị định mới nhất.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Sản phẩm</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Tính năng</a></li>
+                        <li><a href="#simulator">Trình giả lập</a></li>
+                        <li><a href="#pricing">Bảng giá</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Chính sách</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Chính sách bản quyền</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên hệ & Hỗ trợ</h4>
+                    <ul class="footer-links">
+                        <li><strong>Số điện thoại hỗ trợ:</strong><br><a href="tel:0858559379"
+                                style="color: var(--brand-primary); text-decoration: underline;">085 855 9379</a></li>
+                        <li><strong>Email hỗ trợ cài đặt:</strong><br><a href="mailto:laptrinhvui.official@gmail.com"
+                                style="color: var(--brand-primary); text-decoration: underline;">laptrinhvui.official@gmail.com</a>
+                        </li>
+                        <li><strong>Facebook hỗ trợ:</strong><br><a
+                                href="https://www.facebook.com/profile.php?id=61587271752371" target="_blank"
+                                rel="noopener noreferrer"
+                                style="color: var(--brand-primary); text-decoration: underline;">OfficeKit - Soạn thảo
+                                đúng chuẩn</a></li>
+                        <li><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 OfficeKit Việt Nam. Bảo lưu mọi quyền.</p>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/profile.php?id=61587271752371" target="_blank"
+                        rel="noopener noreferrer" aria-label="Facebook">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"
+                            style="vertical-align: middle;">
+                            <path
+                                d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // --- Checklist Tab Switching Logic ---
+        function switchChecklistTab(event, tabId) {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // --- Light/Dark Theme Switching Logic ---
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+        // Load saved theme or check default system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = 'light';
+
+            if (currentTheme === 'light') {
+                newTheme = 'dark';
+            }
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // --- FAQ Accordion Logic ---
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close other active items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // --- Interactive Word Simulator Logic ---
+        const simScanBtn = document.getElementById('simScanBtn');
+        const simFixBtn = document.getElementById('simFixBtn');
+        const sidebarStatus = document.getElementById('sidebarStatus');
+        const scanBeam = document.getElementById('scanBeam');
+        const wordPage = document.getElementById('wordPage');
+
+        // Element handlers
+        const countryTitle = document.getElementById('countryTitle');
+        const countrySub = document.getElementById('countrySub');
+        const docMeta = document.getElementById('docMeta');
+        const docTitle = document.getElementById('docTitle');
+        const docP = document.getElementById('docP');
+
+        // Sidebar rule item handlers
+        const ruleCountry = document.getElementById('ruleCountry');
+        const ruleTitle = document.getElementById('ruleTitle');
+        const ruleLayout = document.getElementById('ruleLayout');
+
+        simScanBtn.addEventListener('click', () => {
+            // Start scanning animation
+            scanBeam.classList.add('scanning');
+            sidebarStatus.textContent = 'Đang quét tài liệu...';
+            simScanBtn.disabled = true;
+
+            setTimeout(() => {
+                // Remove scan beam animation classes
+                scanBeam.classList.remove('scanning');
+                
+                // Add scanned class to document page to trigger red outline styling
+                wordPage.classList.add('scanned');
+
+                // Show errors visual status in sidebar
+                sidebarStatus.innerHTML = '<span style="color: #ef4444; font-weight: bold;">Phát hiện 3 nhóm lỗi thể thức</span>';
+
+                // Mark items as containing errors and make them visible
+                ruleCountry.classList.add('error', 'visible');
+                ruleTitle.classList.add('error', 'visible');
+                ruleLayout.classList.add('error', 'visible');
+
+                // Enable the "Fix" button
+                simFixBtn.style.display = 'block';
+                simScanBtn.style.display = 'none';
+            }, 1800);
+        });
+
+        simFixBtn.addEventListener('click', () => {
+            sidebarStatus.textContent = 'Đang tự động định dạng...';
+            simFixBtn.disabled = true;
+
+            setTimeout(() => {
+                // Apply layout styling updates to mock the "FIXED" state
+                wordPage.classList.add('fixed');
+
+                countryTitle.className = 'country-title fixed';
+                countrySub.className = 'country-sub fixed';
+                docMeta.className = 'doc-meta fixed';
+                docTitle.className = 'doc-title fixed';
+                docP.className = 'doc-p fixed';
+
+                // Change status sidebar indicators to GREEN success
+                ruleCountry.className = 'rule-item fixed';
+                ruleTitle.className = 'rule-item fixed';
+                ruleLayout.className = 'rule-item fixed';
+
+                sidebarStatus.innerHTML = '<span style="color: #10b981; font-weight: bold;">Đã sửa xong! Đạt chuẩn 100% NĐ30</span>';
+
+                simFixBtn.style.display = 'none';
+
+                // Create custom reset button in case they want to run again
+                const resetBtn = document.createElement('button');
+                resetBtn.className = 'sim-btn';
+                resetBtn.style.backgroundColor = '#374151';
+                resetBtn.style.color = 'white';
+                resetBtn.style.marginTop = '10px';
+                resetBtn.textContent = 'Chạy lại Giả lập';
+                resetBtn.addEventListener('click', () => {
+                    location.reload();
+                });
+                simFixBtn.parentElement.appendChild(resetBtn);
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
