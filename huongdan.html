@@ -18,6 +18,20 @@
 
       gtag('config', 'G-0W8GD0L6MW');
       gtag('config', 'AW-18262261036');
+
+      // Event snippet for Click_Download_OfficeKit conversion page
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-18262261036/o2q5CPqMks4cEKz6j4RE',
+            'event_callback': callback
+        });
+        return false;
+      }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -420,6 +434,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     event: "download_click",
                     url: this.href
                 });
+
+                // Google Ads Conversion tracking
+                if (typeof gtag_report_conversion === 'function') {
+                    gtag_report_conversion();
+                }
             });
         });
     </script>
