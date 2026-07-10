@@ -2215,9 +2215,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             el.addEventListener("click", function () {
                 gtag("event", "download_click", {
                     file_name: "OfficeKit",
-                    page_location: window.location.href
+                    download_url: this.href,
+                    page_location: window.location.href,
+                    link_text: this.innerText.trim()
                 });
-                console.log("GA4 Event Sent: download_click for OfficeKit on", window.location.href);
+                console.log("GA4:", {
+                    event: "download_click",
+                    url: this.href
+                });
             });
         });
     </script>
