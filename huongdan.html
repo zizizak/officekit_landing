@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Cài Đặt Trợ Lý OfficeKit - Word & Excel Add-in</title>
+    <meta name="description" content="Hướng dẫn chi tiết từng bước cách cài đặt và kích hoạt trợ lý OfficeKit trên Microsoft Word và Excel bằng phương pháp Trusted Catalog hoặc Sideload Upload.">
+    <meta name="keywords" content="hướng dẫn cài đặt officekit, cài đặt add-in word, cách cài officekit, sửa lỗi nghị định 30, add-in excel, officekit word">
+    <meta name="author" content="OfficeKit Việt Nam">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://officekit-one.vercel.app/huongdan.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://officekit-one.vercel.app/huongdan.html">
+    <meta property="og:title" content="Hướng Dẫn Cài Đặt Trợ Lý OfficeKit - Word & Excel Add-in">
+    <meta property="og:description" content="Cách cài đặt trợ lý OfficeKit từng bước một. Khắc phục lỗi bảo mật và vượt qua chính sách IT của doanh nghiệp dễ dàng.">
+    <meta property="og:image" content="https://officekit-one.vercel.app/officekit_preview.png">
+    <meta property="og:site_name" content="OfficeKit">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hướng Dẫn Cài Đặt Trợ Lý OfficeKit - Word & Excel Add-in">
+    <meta name="twitter:description" content="Cách cài đặt trợ lý OfficeKit từng bước một. Khắc phục lỗi bảo mật và vượt qua chính sách IT của doanh nghiệp dễ dàng.">
+    <meta name="twitter:image" content="https://officekit-one.vercel.app/officekit_preview.png">
+
+    <!-- JSON-LD Structured Data - HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Hướng Dẫn Cài Đặt OfficeKit",
+      "description": "Hướng dẫn từng bước cách cài đặt và kích hoạt trợ lý OfficeKit trên Microsoft Word và Excel bằng phương pháp Trusted Catalog (Shared Folder) khuyên dùng hoặc Tải lên trực tiếp (Sideload Upload).",
+      "image": "https://officekit-one.vercel.app/officekit_preview.png",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "VND",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Microsoft Word 2019/2021 hoặc Microsoft 365"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Microsoft Excel 2019/2021 hoặc Microsoft 365"
+        }
+      ],
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "Tệp manifest.xml của OfficeKit"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Tạo thư mục lưu trữ",
+          "text": "Tạo một thư mục trống mới tại ổ đĩa C của máy tính với đường dẫn: C:\\OfficeAddins.",
+          "url": "https://officekit-one.vercel.app/huongdan.html#step-1",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Chép file Manifest",
+          "text": "Sao chép file manifest.xml (có sẵn trong thư mục tải về) và dán vào thư mục C:\\OfficeAddins vừa tạo.",
+          "url": "https://officekit-one.vercel.app/huongdan.html#step-2",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Cấu hình Trust Center trong Word/Excel",
+          "text": "Mở Word/Excel, chọn File -> Options -> Trust Center -> Trust Center Settings... -> Trusted Add-in Catalogs. Nhập đường dẫn C:\\OfficeAddins vào Catalog Url, nhấn Add Catalog, tích chọn Show in Menu và nhấn OK.",
+          "url": "https://officekit-one.vercel.app/huongdan.html#step-3",
+          "position": 3
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Khởi động và Sử dụng OfficeKit",
+          "text": "Khởi động lại Word/Excel, chọn tab Insert -> My Add-ins -> Shared Folder. Nhấp đúp biểu tượng OfficeKit để bắt đầu sử dụng.",
+          "url": "https://officekit-one.vercel.app/huongdan.html#step-4",
+          "position": 4
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --brand-word: #106ebe;
+            --brand-excel: #107c41;
+            --brand-primary: #0078d4;
+            --accent-green-light: #dff6dd;
+            --accent-green: #107c41;
+            --accent-yellow-light: #fff8e1;
+            --accent-yellow: #ffb300;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 24px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--brand-primary);
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin: 0 0 8px 0;
+            color: var(--brand-primary);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .method-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            background-color: var(--bg-secondary);
+        }
+
+        .method-card.recommended {
+            border: 2px solid var(--accent-green);
+            position: relative;
+        }
+
+        .badge-recommended {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--accent-green);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 12px;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+        }
+
+        h2 {
+            font-size: 19px;
+            margin-top: 0;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .method-card.recommended h2 {
+            color: var(--accent-green);
+        }
+
+        .sub-header-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            background-color: var(--bg-primary);
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Numbered steps style */
+        ol.steps {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        ol.steps li {
+            font-size: 15px;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        ol.steps li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Keyboard-like styling for UI Paths */
+        .ui-btn {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            color: #334155;
+            font-weight: bold;
+        }
+
+        /* Warnings & info boxes */
+        .info-box {
+            background-color: var(--accent-yellow-light);
+            border-left: 4px solid var(--accent-yellow);
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 13.5px;
+            margin-top: 14px;
+        }
+
+        .success-box {
+            background-color: var(--accent-green-light);
+            border-left: 4px solid var(--accent-green);
+            color: #155724;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 13.5px;
+            margin-top: 14px;
+        }
+
+        /* Troubleshooting Section */
+        .trouble-section {
+            background-color: #f8fafc;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+
+        .trouble-section h3 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 12px;
+        }
+
+        .trouble-section ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .trouble-section li {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        /* Support section */
+        .support-box {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .support-box a {
+            color: var(--brand-primary);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Logo and Header -->
+        <header class="header">
+            <div class="logo">O</div>
+            <h1>Hướng Dẫn Cài Đặt OfficeKit</h1>
+            <p class="subtitle">Vui lòng làm theo các hướng dẫn dưới đây để kích hoạt Add-in trên Microsoft Word và Excel.</p>
+        </header>
+
+        <main>
+            <!-- CÁCH 3: Trusted Catalog (RECOMMENDED) -->
+            <div class="method-card recommended">
+                <span class="badge-recommended">KHUYÊN DÙNG</span>
+                <h2>Cách 1: Trusted Catalog (Shared Folder)</h2>
+                <div class="sub-header-desc">
+                    ✓ Phương pháp ổn định nhất • KHÔNG cần nút Upload • KHÔNG yêu cầu quyền Admin cao cấp • Bỏ qua IT Policy chặn Add-in.
+                </div>
+
+                <ol class="steps">
+                    <li>
+                        <strong>Tạo thư mục lưu trữ</strong>: Tạo một thư mục trống mới tại ổ đĩa C của máy tính với đường dẫn: <code class="ui-btn">C:\OfficeAddins</code>
+                    </li>
+                    <li>
+                        <strong>Chép file Manifest</strong>: Sao chép (copy) file <code class="ui-btn">manifest.xml</code> (có sẵn trong thư mục tải về này) và dán (paste) vào thư mục <code class="ui-btn">C:\OfficeAddins</code> vừa tạo.
+                    </li>
+                    <li>
+                        <strong>Cấu hình trên Microsoft Word / Excel</strong>:
+                        <br>Mở Microsoft Word hoặc Excel, thực hiện theo các bước:
+                        <br>• Chọn menu <span class="ui-btn">File</span> (Tệp) → <span class="ui-btn">Options</span> (Tùy chọn) → <span class="ui-btn">Trust Center</span> (Trung tâm tin cậy).
+                        <br>• Nhấn vào nút <span class="ui-btn">Trust Center Settings...</span> (Cài đặt Trung tâm tin cậy).
+                        <br>• Chọn mục <span class="ui-btn">Trusted Add-in Catalogs</span> (Danh mục Bổ trợ Đáng tin cậy) ở danh sách bên trái.
+                        <br>• Tại ô <span class="ui-btn">Catalog Url</span> (Địa chỉ URL danh mục), nhập vào đường dẫn thư mục: <code class="ui-btn">C:\OfficeAddins</code>
+                        <br>• Nhấn nút <span class="ui-btn">Add Catalog</span> (Thêm danh mục).
+                        <br>• Tích chọn vào ô <span class="ui-btn">Show in Menu</span> (Hiển thị trong menu) ở dòng thư mục vừa thêm vào bảng dưới. Nhấn <span class="ui-btn">OK</span> để lưu.
+                    </li>
+                    <li>
+                        <strong>Khởi động & Sử dụng</strong>:
+                        <br>Tắt và mở lại phần mềm Word / Excel.
+                        <br>• Chọn tab <span class="ui-btn">Insert</span> (Chèn) → <span class="ui-btn">My Add-ins</span> (Bổ trợ của tôi).
+                        <br>• Nhấn chọn tab <span class="ui-btn">Shared Folder</span> (Thư mục dùng chung) ở hàng trên cùng cửa sổ. Bạn sẽ thấy biểu tượng **OfficeKit** xuất hiện tại đây, click đúp để sử dụng ngay!
+                    </li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Mẹo:</strong> Cách này giúp Office tự động ghi nhớ Add-in. Mỗi lần mở Word/Excel lên, OfficeKit sẽ luôn sẵn sàng hoạt động mà bạn không cần phải cài lại.
+                </div>
+            </div>
+
+            <!-- CÁCH 1: Upload trực tiếp -->
+            <div class="method-card">
+                <h2>Cách 2: Tải lên trực tiếp (Sideload Upload)</h2>
+                <div class="sub-header-desc">
+                    Thích hợp nếu Microsoft Office của bạn cho phép cài đặt bên ngoài trực tiếp.
+                </div>
+                <ol class="steps">
+                    <li>Mở Word hoặc Excel, chọn tab <span class="ui-btn">Insert</span> (Chèn) → <span class="ui-btn">Get Add-ins</span> (Tải bổ trợ).</li>
+                    <li>Chọn tab <span class="ui-btn">My Add-ins</span> (Bổ trợ của tôi) → Nhấn nút <span class="ui-btn">Manage My Add-ins</span> (Quản lý bổ trợ của tôi) → Chọn <span class="ui-btn">Upload My Add-in</span> (Tải bổ trợ của tôi lên).</li>
+                    <li>Nhấn nút tìm kiếm, chọn đến file <code class="ui-btn">manifest.xml</code> trong gói tải về để kích hoạt OfficeKit.</li>
+                </ol>
+                <div class="info-box">
+                    <strong>Chú ý:</strong> Ở một số phiên bản Office 365 doanh nghiệp hoặc chính sách bảo mật nội bộ của IT, nút <span class="ui-btn">Upload My Add-in</span> có thể bị ẩn hoặc khóa xám. Nếu gặp trường hợp này, vui lòng sử dụng <strong>Cách 1 (Shared Folder)</strong> ở phía trên.
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="trouble-section">
+                <h3>❓ Không cài đặt được? Cách xử lý</h3>
+                <ul>
+                    <li><strong>Không thấy tab Shared Folder?</strong> Hãy chắc chắn bạn đã tích vào ô <span class="ui-btn">Show in Menu</span> trong Trust Center Settings và đã khởi động lại hoàn toàn Word/Excel.</li>
+                    <li><strong>Office báo lỗi phiên bản?</strong> OfficeKit yêu cầu Microsoft Office 2019/2021 trở lên hoặc Microsoft 365. Các bản Office 2016 trở về trước không được hỗ trợ đầy đủ.</li>
+                    <li><strong>Hạn chế chính sách IT công ty?</strong> Sử dụng <strong>Cách 1 (Shared Folder)</strong> để tự vượt qua kiểm soát chính sách IT trong hầu hết trường hợp.</li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- Support -->
+        <footer class="support-box">
+            Gặp khó khăn khi cài đặt? Liên hệ bộ phận kỹ thuật để được trợ giúp 24/7:
+            <br>Hotline/Zalo: <a href="tel:0858559379">085 855 9379</a> | Email: <a href="mailto:laptrinhvui.official@gmail.com">laptrinhvui.official@gmail.com</a>
+            <br>Facebook: <a href="https://www.facebook.com/profile.php?id=61587271752371" target="_blank">OfficeKit Page</a>
+        </footer>
+    </div>
+
+</body>
+
+</html>

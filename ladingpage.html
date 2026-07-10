@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfficeKit — Trợ lý soạn thảo văn bản chuẩn Nghị định 30 & AI Audit</title>
+    <meta name="description"
+        content="Văn bản bị trả vì sai thể thức Nghị định 30? Cài đặt ngay OfficeKit để tự động kiểm tra và sửa đổi 23+ lỗi trình bày ngay trong Microsoft Word chỉ với một click. Dùng thử miễn phí.">
+    <meta name="keywords"
+        content="kiểm tra nghị định 30, kiểm tra thể thức văn bản, kiểm tra văn bản hành chính, sai cỡ chữ word, sai căn lề word, phần mềm kiểm tra văn bản, officekit">
+    <meta name="author" content="OfficeKit Việt Nam">
+
+    <link rel="canonical" href="https://officekit-one.vercel.app/ladingpage.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://officekit-one.vercel.app/ladingpage.html">
+    <meta property="og:title" content="Văn bản bị trả vì sai thể thức Nghị định 30? Sửa ngay với OfficeKit">
+    <meta property="og:description" content="OfficeKit giúp tự động kiểm tra và sửa hơn 23 lỗi trình bày văn bản hành chính theo Nghị định 30/2020/NĐ-CP trực tiếp trong Word.">
+    <meta property="og:image" content="https://officekit-one.vercel.app/officekit_preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="OfficeKit">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Văn bản bị trả vì sai thể thức Nghị định 30? Sửa ngay với OfficeKit">
+    <meta name="twitter:description" content="OfficeKit giúp tự động rà soát khổ giấy, lề, font chữ, quốc hiệu... và sửa lỗi thể thức chỉ trong 1 click.">
+    <meta name="twitter:image" content="https://officekit-one.vercel.app/officekit_preview.png">
+
+    <!-- Schema.org SoftwareApplication Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "OfficeKit",
+      "operatingSystem": "Windows, macOS, Web Browser",
+      "applicationCategory": "BusinessApplication",
+      "downloadUrl": "https://officekit.vn/download/OfficeKit_Trial.zip",
+      "softwareVersion": "1.0.0",
+      "screenshot": "https://officekit-one.vercel.app/officekit_preview.png",
+      "image": "https://officekit-one.vercel.app/officekit_preview.png",
+      "author": {
+        "@type": "Organization",
+        "name": "OfficeKit Việt Nam",
+        "url": "https://officekit-one.vercel.app"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "VND",
+        "lowPrice": "0",
+        "highPrice": "499000",
+        "offerCount": "3"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "120"
+      }
+    }
+    </script>
+
+    <!-- Schema.org FAQPage Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Có dùng được Office 2019 không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Được. OfficeKit hỗ trợ tất cả các phiên bản Microsoft Office cài đặt trên Windows từ 2016 trở lên (bao gồm Office 2016, 2019, 2021) cực kỳ ổn định."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Có hỗ trợ Microsoft 365 không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. OfficeKit hoạt động hoàn hảo trên Microsoft 365 (cả phiên bản cài đặt trên máy tính Windows, macOS và phiên bản Word Online chạy trên trình duyệt web)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Có cần kết nối Internet khi sử dụng không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không bắt buộc. Tính năng rà soát, định dạng sửa lỗi Nghị định 30 và Đọc số thành chữ chạy offline hoàn toàn trực tiếp trên máy của bạn. Chỉ riêng tính năng phân tích logic AI Audit mới cần kết nối mạng để kết nối API Gemini."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI Audit có gửi dữ liệu tài liệu lên máy chủ khác không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tuyệt đối không. Tài liệu của bạn chỉ được chuyển đoạn văn bản cần audit qua đường truyền HTTPS bảo mật trực tiếp tới Google Gemini API của Google và không lưu giữ lại trên bất kỳ server trung gian nào khác. An toàn thông tin của bạn là ưu tiên số một."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sau khi hết hạn dùng thử (7 ngày Trial) thì sao?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sau 7 ngày, tài khoản của bạn sẽ tự động chuyển về bản dùng thử miễn phí (bị giới hạn số lượt quét lỗi Nghị định 30 mỗi ngày). Chúng tôi cam kết không tự động gia hạn hay tự động trừ tiền của bạn."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Light theme variables */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --brand-primary: #0078d4;
+            --brand-hover: #106ebe;
+            --brand-light: #eff6fc;
+            --accent-purple: #8764b8;
+            --accent-green: #107c41;
+            --accent-green-light: #dff6dd;
+            --accent-red: #d13438;
+            --accent-red-light: #fde7e9;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+            --card-shadow-hover: 0 20px 40px -15px rgba(0, 72, 212, 0.12);
+            --transition-speed: 0.3s;
+            --font-main: 'Be Vietnam Pro', sans-serif;
+            --font-display: 'Lexend', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            /* Dark theme variables */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #131c2e;
+            --bg-tertiary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --brand-primary: #2b88d8;
+            --brand-hover: #479ef5;
+            --brand-light: rgba(43, 136, 216, 0.1);
+            --accent-purple: #a27cd4;
+            --accent-green: #1f9a55;
+            --accent-green-light: rgba(31, 154, 85, 0.15);
+            --accent-red: #e85c5c;
+            --accent-red-light: rgba(232, 92, 92, 0.15);
+            --border-color: #273549;
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+            --card-shadow-hover: 0 20px 40px -15px rgba(43, 136, 216, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        /* Buttons & Animations */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            border: none;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, #005a9e 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 120, 212, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 120, 212, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            transform: translateY(-2px);
+        }
+
+        /* Pulse animation for primary CTA */
+        .pulse-animation {
+            animation: pulse-effect 2s infinite;
+        }
+
+        @keyframes pulse-effect {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 120, 212, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 120, 212, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 120, 212, 0);
+            }
+        }
+
+        /* Header Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(248, 250, 252, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        [data-theme="dark"] header {
+            background-color: rgba(11, 15, 25, 0.85);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--brand-primary);
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--brand-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-speed);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--brand-primary);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 60px 0;
+            position: relative;
+            background: radial-gradient(circle at top right, var(--brand-light) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 19px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero-cta-wrapper {
+            margin-bottom: 12px;
+        }
+
+        .hero-subtext {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero-badges {
+            display: inline-flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .hero-badge-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background-color: var(--bg-tertiary);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-badge-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-green);
+        }
+
+        /* Section Layout General */
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .section-cta-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .section-cta-container p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Simulator CSS (Auto-play Word GUI) */
+        .simulator-section {
+            background-color: var(--bg-primary);
+        }
+
+        .simulator-window {
+            background-color: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .sim-titlebar {
+            background-color: #0f172a;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .sim-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .sim-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .sim-dot-red { background-color: #ef4444; }
+        .sim-dot-yellow { background-color: #f59e0b; }
+        .sim-dot-green { background-color: #10b981; }
+
+        .sim-title {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .sim-workspace {
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            flex: 1;
+            overflow: hidden;
+            background-color: #0f172a;
+        }
+
+        .sim-page-container {
+            background-color: #334155;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sim-word-page {
+            background-color: #ffffff;
+            color: #000000;
+            width: 100%;
+            max-width: 440px;
+            min-height: 450px;
+            padding: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            font-size: 11px;
+            line-height: 1.2;
+        }
+
+        /* Scan beam overlay */
+        .scan-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 120, 212, 0.2) 50%, transparent 100%);
+            transform: translateY(-100%);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .scan-overlay.scanning {
+            animation: scanEffect 1.5s ease-in-out forwards;
+        }
+
+        @keyframes scanEffect {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Document Simulated Elements */
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .doc-gov-unit {
+            text-align: center;
+        }
+
+        .doc-gov-title {
+            font-weight: bold;
+        }
+
+        .doc-country-title {
+            text-align: center;
+        }
+
+        .error-border {
+            border: 1px dashed var(--accent-red);
+            background-color: var(--accent-red-light);
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+
+        .sim-word-page.fixed-state {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .sim-word-page.fixed-state .error-border {
+            border: none !important;
+            background-color: transparent !important;
+            padding: 0 !important;
+        }
+
+        .sim-word-page.fixed-state .bold-caps {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .sim-word-page.fixed-state .italic-line {
+            font-style: italic;
+        }
+
+        .sim-word-page.fixed-state .indent-text {
+            text-indent: 1.27cm;
+            display: block;
+            text-align: justify;
+        }
+
+        /* Sidebar UI */
+        .sim-sidebar {
+            background-color: #111827;
+            border-left: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            justify-content: space-between;
+        }
+
+        .sidebar-header {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sidebar-status {
+            background-color: #374151;
+            color: #cbd5e1;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .sidebar-rules {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .sim-rule {
+            background-color: #1f2937;
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: #9ca3af;
+            border-left: 3px solid #6b7280;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .sim-rule.detected {
+            border-left-color: var(--accent-red);
+            color: #fca5a5;
+            opacity: 1;
+        }
+
+        .sim-rule.fixed {
+            border-left-color: var(--accent-green);
+            color: #a7f3d0;
+            opacity: 1;
+            background-color: rgba(16, 185, 129, 0.05);
+        }
+
+        .sim-btn-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sim-action-btn {
+            background-color: #374151;
+            color: #ffffff;
+            border: none;
+            padding: 8px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .sim-action-btn.active-btn {
+            background-color: var(--brand-primary);
+        }
+
+        /* Before/After Drag Slider */
+        .before-after-wrapper {
+            background-color: var(--bg-secondary);
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 780px;
+            height: 480px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            user-select: none;
+        }
+
+        /* Render documents with CSS instead of images for load speed */
+        .doc-mockup {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 40px;
+            height: 100%;
+            width: 100%;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .doc-mockup-before {
+            font-family: Arial, sans-serif;
+            background-color: #fcf8f8;
+        }
+
+        .doc-mockup-after {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .slider-img-after {
+            z-index: 2;
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        }
+
+        /* Slider Control Line & Handle */
+        .slider-control {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background-color: var(--brand-primary);
+            z-index: 10;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--brand-primary);
+            color: #ffffff;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            z-index: 11;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: ew-resize;
+            font-weight: bold;
+            font-size: 16px;
+            user-select: none;
+        }
+
+        /* Comparison Badges */
+        .comp-badge {
+            position: absolute;
+            top: 20px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-before {
+            left: 20px;
+            background-color: var(--accent-red-light);
+            color: var(--accent-red);
+            border: 1px solid rgba(209, 52, 56, 0.2);
+        }
+
+        .badge-after {
+            right: 20px;
+            background-color: var(--accent-green-light);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 124, 65, 0.2);
+            z-index: 12;
+        }
+
+        /* Problems Solved Section (SEO Keyword Grid) */
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .keyword-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .keyword-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .keyword-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Target Audience Section */
+        .audience-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .audience-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all var(--transition-speed);
+        }
+
+        .audience-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--brand-primary);
+        }
+
+        .audience-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--brand-light);
+            color: var(--brand-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .audience-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .audience-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* 3 Core Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px 24px;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-speed);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .feature-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .icon-blue { background: linear-gradient(135deg, var(--brand-primary) 0%, #005a9e 100%); }
+        .icon-purple { background: linear-gradient(135deg, var(--accent-purple) 0%, #684b94 100%); }
+        .icon-green { background: linear-gradient(135deg, var(--accent-green) 0%, #0b592e 100%); }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Credibility Indicators */
+        .credibility-section {
+            background-color: var(--bg-tertiary);
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .credibility-flex {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            text-align: center;
+        }
+
+        .cred-item h4 {
+            font-size: 32px;
+            color: var(--brand-primary);
+            font-family: var(--font-display);
+        }
+
+        .cred-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-speed);
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--brand-primary);
+            background-color: var(--bg-secondary);
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .price-card.popular::before {
+            content: "PHỔ BIẾN NHẤT";
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--brand-primary);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+        }
+
+        .price-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .popular .price-title {
+            color: var(--brand-primary);
+        }
+
+        .price-num {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .price-num span {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .price-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            min-height: 40px;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+            font-size: 13px;
+        }
+
+        .price-features li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .price-features li.disabled {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .price-features svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .icon-check-green { color: var(--accent-green); }
+        .icon-close-muted { color: var(--text-muted); }
+
+        .price-card .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background-color: var(--bg-primary);
+        }
+
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 18px 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-question svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            transition: transform var(--transition-speed);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed) ease-out;
+            padding: 0 24px;
+        }
+
+        .faq-answer p {
+            padding-bottom: 18px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 180px;
+        }
+
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+            color: var(--brand-primary);
+        }
+
+        /* Bottom CTA Section */
+        .bottom-cta {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .bottom-cta h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .bottom-cta p {
+            font-size: 16px;
+            color: #cbd5e1;
+            margin-bottom: 28px;
+        }
+
+        .bottom-cta .hero-subtext {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b0f19;
+            color: #94a3b8;
+            padding: 30px 0;
+            font-size: 13px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-primary);
+        }
+
+        /* Responsive styling */
+        @media (max-width: 900px) {
+            .features-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .price-card {
+                max-width: 440px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .sim-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .sim-sidebar {
+                border-left: none;
+                border-top: 1px solid #334155;
+                height: 160px;
+            }
+
+            .simulator-window {
+                height: 520px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .section-header h2 {
+                font-size: 26px;
+            }
+
+            .slider-container {
+                height: 380px;
+            }
+
+            .footer-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Navbar -->
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="logo">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.12 0 2-.88 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                    </svg>
+                    OfficeKit
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggleBtn" aria-label="Chuyển đổi giao diện">
+                        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                        </svg>
+                    </button>
+                    <a href="#pricing" class="btn btn-primary" style="padding: 8px 18px; font-size: 14px;">Tải miễn phí</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+    <!-- 1. Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Văn bản bị trả vì <br>
+                    <span>sai thể thức Nghị định 30?</span>
+                </h1>
+                <p class="hero-description">
+                    OfficeKit tự động kiểm tra và sửa hơn 23 lỗi trình bày ngay trong Microsoft Word chỉ với một lần bấm.
+                </p>
+                <div class="hero-cta-wrapper">
+                    <a href="#pricing" class="btn btn-primary pulse-animation">
+                        Tải OfficeKit miễn phí
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="hero-subtext">Không cần đăng ký. Sử dụng trực tiếp trong Microsoft Word.</p>
+                
+                <div class="hero-badges">
+                    <div class="hero-badge-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        Kiểm tra trong 3 giây
+                    </div>
+                    <div class="hero-badge-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        Không cần Internet
+                    </div>
+                    <div class="hero-badge-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        Không upload tài liệu
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Word Simulator Section (5s loop) -->
+    <section class="simulator-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trải nghiệm sửa đổi tự động trong 5 giây</h2>
+                <p>Xem quy trình OfficeKit tự động quét và chuẩn hóa thể thức văn bản ngay lập tức.</p>
+            </div>
+
+            <div class="simulator-window">
+                <!-- Titlebar -->
+                <div class="sim-titlebar">
+                    <div class="sim-dots">
+                        <span class="sim-dot sim-dot-red"></span>
+                        <span class="sim-dot sim-dot-yellow"></span>
+                        <span class="sim-dot sim-dot-green"></span>
+                    </div>
+                    <div class="sim-title">cong-van-nhanh.docx — Microsoft Word</div>
+                    <div style="width: 40px;"></div>
+                </div>
+
+                <!-- Main workspace -->
+                <div class="sim-workspace">
+                    <!-- Word Paper Page -->
+                    <div class="sim-page-container">
+                        <div class="sim-word-page" id="simWordPage">
+                            <div class="scan-overlay" id="simScanOverlay"></div>
+                            
+                            <!-- Document Header -->
+                            <div class="doc-header">
+                                <div class="doc-gov-unit">
+                                    <div class="doc-gov-title">UBND TỈNH DEMO</div>
+                                    <div class="error-border" id="simSubGov">VĂN PHÒNG HỘI ĐỒNG</div>
+                                </div>
+                                <div class="doc-country-title">
+                                    <div class="error-border bold-caps" id="simCountry1">Cộng hòa xã hội chủ nghĩa việt nam</div>
+                                    <div class="error-border italic-line" id="simCountry2">Độc lập - Tự do - Hạnh phúc</div>
+                                </div>
+                            </div>
+
+                            <!-- Document Body Title -->
+                            <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+                                <div class="error-border bold-caps" id="simDocTitle" style="font-size: 13px; display: inline-block;">
+                                    báo cáo công tác văn thư lưu trữ năm 2026
+                                </div>
+                            </div>
+
+                            <!-- Document Content Paragraph -->
+                            <div class="error-border indent-text" id="simDocParagraph">
+                                căn cứ vào nghị định số 30/2020/NĐ-CP của Chính phủ về công tác văn thư, văn phòng báo cáo tiến độ chuẩn hóa tài liệu hành chính năm 2026.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar OfficeKit Add-in -->
+                    <div class="sim-sidebar">
+                        <div class="sidebar-header">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M2.166 4.9L10 1.154l7.834 3.746v6.309c0 5.29-3.72 9.878-7.834 11.238L10 22.5l-.166-.053c-4.115-1.36-7.834-5.949-7.834-11.238V4.9zm8.58 2.22a1 1 0 00-1.492 0L5.753 10.87a1 1 0 101.492 1.332L9 10.366V15a1 1 0 102 0v-4.634l1.755 1.836a1 1 0 101.492-1.332L10.746 7.12z" clip-rule="evenodd"/>
+                            </svg>
+                            OfficeKit NĐ30
+                        </div>
+
+                        <div class="sidebar-status" id="simSidebarStatus">Sẵn sàng kiểm tra...</div>
+
+                        <div class="sidebar-rules">
+                            <div class="sim-rule" id="rule1">Quốc hiệu viết hoa & in đậm</div>
+                            <div class="sim-rule" id="rule2">Tiêu ngữ viết thường đứng</div>
+                            <div class="sim-rule" id="rule3">Tiêu đề in hoa & in đậm</div>
+                            <div class="sim-rule" id="rule4">Thụt đầu dòng đoạn văn</div>
+                        </div>
+
+                        <div class="sim-btn-box">
+                            <button class="sim-action-btn active-btn" id="simActionBtn">Quét lỗi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-cta-container">
+                <a href="#pricing" class="btn btn-secondary">Tải OfficeKit & Sử Dụng Ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Before / After Interactive Slider Section -->
+    <section class="before-after-wrapper section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>So sánh trực quan trước và sau khi định dạng</h2>
+                <p>Kéo thanh trượt để so sánh văn bản mắc lỗi thể thức phổ biến và văn bản chuẩn chỉ sau khi dùng OfficeKit.</p>
+            </div>
+
+            <div class="slider-container" id="sliderContainer">
+                <!-- Bad Document (Before) -->
+                <div class="slider-img doc-mockup doc-mockup-before">
+                    <div class="comp-badge badge-before">🔴 Sai thể thức phổ biến</div>
+                    <div class="doc-header">
+                        <div class="doc-gov-unit">
+                            <span style="font-weight: bold; font-size: 11px;">UBND TP HÀ NỘI</span><br>
+                            <span style="background-color: #ffeaea; border: 1px dashed red; padding: 2px;">VĂN PHÒNG ĐỒNG CHÍ</span>
+                        </div>
+                        <div class="doc-country-title" style="text-align: right;">
+                            <span style="background-color: #ffeaea; border: 1px dashed red; padding: 2px; text-transform: none; font-weight: normal;">Cộng hòa Xã hội Chủ nghĩa Việt Nam</span><br>
+                            <span style="background-color: #ffeaea; border: 1px dashed red; padding: 2px; font-style: normal; font-weight: normal;">Độc lập-Tự do-Hạnh phúc</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin: 40px 0 20px 0;">
+                        <span style="background-color: #ffeaea; border: 1px dashed red; padding: 2px; text-transform: lowercase; font-weight: normal; font-size: 12px;">Quyết định về việc ban hành quy chế lưu trữ hành chính</span>
+                    </div>
+                    <div style="background-color: #ffeaea; border: 1px dashed red; padding: 6px; line-height: 1.15; text-indent: 0; text-align: left;">
+                        Căn cứ Nghị định số 30/2020/NĐ-CP ngày 05/3/2020 của Chính phủ về công tác văn thư. Quyết định quy định việc lập hồ sơ và nộp lưu hồ sơ, tài liệu giấy vào Lưu trữ cơ quan văn phòng...
+                    </div>
+                </div>
+
+                <!-- Good Document (After) -->
+                <div class="slider-img slider-img-after" id="sliderImgAfter">
+                    <div class="doc-mockup doc-mockup-after">
+                        <div class="comp-badge badge-after">🟢 Chuẩn Nghị định 30</div>
+                        <div class="doc-header">
+                            <div class="doc-gov-unit">
+                                <span style="font-weight: bold;">UBND TP HÀ NỘI</span><br>
+                                <span style="font-weight: bold; border-bottom: 1px solid #000; padding-bottom: 2px; display: inline-block;">VĂN PHÒNG HỘI ĐỒNG</span>
+                            </div>
+                            <div class="doc-country-title" style="text-align: center;">
+                                <span style="font-weight: bold; text-transform: uppercase;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</span><br>
+                                <span style="font-weight: bold; font-style: italic; border-bottom: 1px solid #000; padding-bottom: 2px; display: inline-block;">Độc lập - Tự do - Hạnh phúc</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <span style="font-weight: bold; text-transform: uppercase; font-size: 15px;">QUYẾT ĐỊNH</span><br>
+                            <span style="font-weight: bold;">Về việc ban hành quy chế lưu trữ hành chính</span>
+                        </div>
+                        <div style="text-indent: 1.27cm; text-align: justify;">
+                            Căn cứ Nghị định số 30/2020/NĐ-CP ngày 05/3/2020 của Chính phủ về công tác văn thư. Quyết định quy định việc lập hồ sơ và nộp lưu hồ sơ, tài liệu giấy vào Lưu trữ cơ quan văn phòng...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drag Control Bar -->
+                <div class="slider-control" id="sliderControl">
+                    <div class="slider-handle">↔</div>
+                </div>
+            </div>
+
+            <div class="section-cta-container">
+                <a href="#pricing" class="btn btn-primary pulse-animation">Sửa Lỗi Ngay Với OfficeKit</a>
+                <p>Bắt đầu dùng thử miễn phí 7 ngày • Không cần thẻ tín dụng</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Google Ads Quality Score Section (Targeted Search Queries) -->
+    <section class="section-padding" style="background-color: var(--bg-primary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>OfficeKit giúp giải quyết triệt để các vấn đề gì?</h2>
+                <p>Khắc phục toàn bộ các lỗi trình bày văn bản hành chính phổ biến nhất khiến tài liệu của bạn bị trả về.</p>
+            </div>
+
+            <div class="keywords-grid">
+                <div class="keyword-card">
+                    <h3>Kiểm tra Nghị định 30 tự động</h3>
+                    <p>Rà soát tự động 23+ quy tắc chuẩn pháp luật về cỡ chữ, khoảng cách căn lề trái, phải, trên, dưới khổ giấy A4.</p>
+                </div>
+                <div class="keyword-card">
+                    <h3>Sửa lỗi sai căn lề Word</h3>
+                    <p>Khắc phục lập tức lỗi lệch lề, sai khổ giấy, khoảng cách giãn dòng không chuẩn hoặc thụt đầu dòng không đều.</p>
+                </div>
+                <div class="keyword-card">
+                    <h3>Sửa lỗi sai cỡ chữ Word</h3>
+                    <p>Đồng bộ phông chữ Times New Roman Unicode, chuẩn hóa kích thước chữ cho quốc hiệu, tiêu ngữ và chức danh.</p>
+                </div>
+                <div class="keyword-card">
+                    <h3>Phần mềm kiểm tra văn bản</h3>
+                    <p>Giải pháp thông minh hoạt động trực tiếp trong Microsoft Word giúp rà soát văn bản hành chính trước khi trình ký.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Target Audience Section -->
+    <section class="audience-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>OfficeKit phù hợp với ai?</h2>
+                <p>Được thiết kế chuyên biệt để hỗ trợ công việc soạn thảo văn bản quy chuẩn tại Việt Nam.</p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">✍</div>
+                    <h3>Văn thư & Hành chính</h3>
+                    <p>Kiểm tra thể thức hàng loạt tài liệu đi/đến, tờ trình, công văn một cách chuẩn xác trước khi ban hành.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">📊</div>
+                    <h3>Kế toán & Nhân sự</h3>
+                    <p>Trình ký báo cáo, quyết định bổ nhiệm, quy chế doanh nghiệp không lo nhầm ngày tháng, sai số tiền bằng chữ.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🏛</div>
+                    <h3>Cán bộ Nhà nước</h3>
+                    <p>Bảo đảm mọi văn bản pháp quy, báo cáo chuyên đề tuân thủ 100% hướng dẫn thể thức Nghị định 30.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">💼</div>
+                    <h3>Doanh nghiệp</h3>
+                    <p>Chuẩn hóa hồ sơ đấu thầu, hợp đồng thương mại gửi đối tác, cơ quan thuế chuyên nghiệp và trang trọng.</p>
+                </div>
+            </div>
+            
+            <div class="section-cta-container">
+                <a href="#pricing" class="btn btn-secondary">Đăng Ký Tải OfficeKit Miễn Phí</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 3 Core Features Section -->
+    <section class="section-padding" style="background-color: var(--bg-primary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>3 tính năng nổi bật của OfficeKit</h2>
+                <p>Một bộ công cụ duy nhất giải quyết tất cả nỗi sợ soạn thảo của bạn.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box icon-blue">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3>Check & Fix Nghị định 30</h3>
+                    <p>Tự động rà soát quốc hiệu, tiêu ngữ, lề, khổ giấy, cỡ chữ và căn chỉnh hoàn hảo chỉ với 1-Click chuột.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box icon-purple">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3>AI Audit thông minh</h3>
+                    <p>Tích hợp AI (Gemini) giúp đọc hiểu văn bản, phát hiện lỗi mâu thuẫn số liệu, sai lệch ngày tháng và cải tiến câu từ hành chính.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box icon-green">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    </div>
+                    <h3>Bảo mật ngoại tuyến</h3>
+                    <p>Hoạt động trực tiếp trên máy tính của bạn, không cần Internet (trừ AI Audit), đảm bảo thông tin tài liệu được giữ kín tuyệt đối.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility Indicators Section -->
+    <section class="credibility-section">
+        <div class="container">
+            <div class="credibility-flex">
+                <div class="cred-item">
+                    <h4>1.200+</h4>
+                    <p>Lượt kiểm tra văn bản hành chính</p>
+                </div>
+                <div class="cred-item">
+                    <h4>23+</h4>
+                    <p>Quy tắc chuẩn Nghị định 30 tích hợp</p>
+                </div>
+                <div class="cred-item">
+                    <h4>30 giây</h4>
+                    <p>Cài đặt và sẵn sàng hoạt động</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Pricing Section (Positioned near the end) -->
+    <section class="pricing-section section-padding" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lựa chọn gói phù hợp với bạn</h2>
+                <p>Sở hữu trợ lý đắc lực bảo vệ sự chuyên nghiệp của bạn chỉ từ 600đ mỗi ngày.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Gói Dùng thử -->
+                <div class="price-card">
+                    <div class="price-title">Dùng thử</div>
+                    <div class="price-num">0đ <span>/ 7 ngày</span></div>
+                    <p class="price-desc">Trải nghiệm đầy đủ tất cả các tính năng cơ bản của OfficeKit.</p>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Kiểm tra lỗi Nghị định 30
+                        </li>
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Sửa lỗi căn lề, cỡ chữ tự động
+                        </li>
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Giới hạn 10 lượt quét / ngày
+                        </li>
+                        <li class="disabled">
+                            <svg class="icon-close-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            AI Audit phát hiện mâu thuẫn
+                        </li>
+                    </ul>
+                    <a href="https://officekit.vn/download/OfficeKit_Trial.zip" class="btn btn-secondary">Dùng thử miễn phí</a>
+                </div>
+
+                <!-- Gói Standard -->
+                <div class="price-card">
+                    <div class="price-title">Standard</div>
+                    <div class="price-num">249.000đ <span>/ năm</span></div>
+                    <p class="price-desc">Giải pháp hoàn hảo cho cá nhân thường xuyên soạn thảo văn bản.</p>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Kiểm tra NĐ30 không giới hạn
+                        </li>
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Sửa lỗi căn lề, font chữ tức thì
+                        </li>
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Đọc số thành chữ chuẩn kế toán
+                        </li>
+                        <li class="disabled">
+                            <svg class="icon-close-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            AI Audit phát hiện mâu thuẫn
+                        </li>
+                    </ul>
+                    <a href="#pricing" class="btn btn-secondary">Đăng ký Standard</a>
+                </div>
+
+                <!-- Gói Pro AI -->
+                <div class="price-card popular">
+                    <div class="price-title">Pro AI</div>
+                    <div class="price-num">499.000đ <span>/ năm</span></div>
+                    <p class="price-desc">Trọn bộ sức mạnh Trí tuệ nhân tạo AI bảo vệ an toàn nội dung tối đa.</p>
+                    <ul class="price-features">
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Mọi tính năng của gói Standard
+                        </li>
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            <strong>AI Audit phân tích nội dung (Gemini)</strong>
+                        </li>
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Kho mẫu văn bản đồng bộ Cloud
+                        </li>
+                        <li>
+                            <svg class="icon-check-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            Hỗ trợ kỹ thuật ưu tiên 24/7
+                        </li>
+                    </ul>
+                    <a href="#pricing" class="btn btn-primary">Nâng cấp Pro AI</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FAQ Section (5 short questions) -->
+    <section class="faq-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Câu hỏi thường gặp</h2>
+                <p>Giải đáp nhanh thắc mắc về kỹ thuật và quá trình cài đặt OfficeKit.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Có dùng được Office 2019 không?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Được. OfficeKit hỗ trợ tất cả các phiên bản Microsoft Office cài đặt trên Windows từ 2016 trở lên (bao gồm Office 2016, 2019, 2021) cực kỳ ổn định.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Có hỗ trợ Microsoft 365 không?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Có. OfficeKit hoạt động hoàn hảo trên Microsoft 365 (cả phiên bản cài đặt trên máy tính Windows, macOS và phiên bản Word Online chạy trên trình duyệt web).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Có cần kết nối Internet khi sử dụng không?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Không bắt buộc. Tính năng rà soát, định dạng sửa lỗi Nghị định 30 và Đọc số thành chữ chạy offline hoàn toàn trực tiếp trên máy của bạn. Chỉ riêng tính năng phân tích logic AI Audit mới cần kết nối mạng để kết nối API Gemini.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        AI Audit có gửi dữ liệu tài liệu lên máy chủ khác không?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tuyệt đối không. Tài liệu của bạn chỉ được chuyển đoạn văn bản cần audit qua đường truyền HTTPS bảo mật trực tiếp tới Google Gemini API của Google và không lưu giữ lại trên bất kỳ server trung gian nào khác. An toàn thông tin của bạn là ưu tiên số một.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Sau khi hết hạn dùng thử (7 ngày Trial) thì sao?
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sau 7 ngày, tài khoản của bạn sẽ tự động chuyển về bản dùng thử miễn phí (bị giới hạn số lượt quét lỗi Nghị định 30 mỗi ngày). Chúng tôi cam kết không tự động gia hạn hay tự động trừ tiền của bạn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Final CTA Section -->
+    <section class="bottom-cta">
+        <div class="container">
+            <h2>Sẵn sàng chuẩn hóa văn bản của bạn trong 3 giây?</h2>
+            <p>Tránh rủi ro văn bản bị trả về vì sai thể thức trình bày hành chính ngay hôm nay.</p>
+            <a href="#pricing" class="btn btn-primary pulse-animation" style="background: var(--brand-primary); color: white;">
+                Tải OfficeKit miễn phí ngay
+            </a>
+            <p class="hero-subtext">Không cần thẻ tín dụng • Tải xuống và sử dụng trực tiếp trong Word/Excel</p>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-flex">
+                <p>© 2026 OfficeKit Việt Nam. Tất cả quyền được bảo lưu.</p>
+                <div class="footer-links">
+                    <a href="/privacy">Chính sách bảo mật</a>
+                    <a href="/eula">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JS Script -->
+    <script>
+        // --- Light/Dark Theme Switcher ---
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // --- FAQ Accordion ---
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // --- Before / After Slider ---
+        const sliderContainer = document.getElementById('sliderContainer');
+        const sliderImgAfter = document.getElementById('sliderImgAfter');
+        const sliderControl = document.getElementById('sliderControl');
+
+        function moveSlider(xPos) {
+            const containerRect = sliderContainer.getBoundingClientRect();
+            let x = xPos - containerRect.left;
+            
+            // Constrain within bounds
+            if (x < 0) x = 0;
+            if (x > containerRect.width) x = containerRect.width;
+            
+            const percent = (x / containerRect.width) * 100;
+            sliderImgAfter.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+            sliderControl.style.left = `${percent}%`;
+        }
+
+        // Mouse Drag events
+        let isDragging = false;
+        sliderControl.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.clientX);
+        });
+
+        // Touch events for Mobile
+        sliderControl.addEventListener('touchstart', () => isDragging = true);
+        window.addEventListener('touchend', () => isDragging = false);
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.touches[0].clientX);
+        });
+
+        // --- Auto-play 5-Second Word Simulator Loop ---
+        const simWordPage = document.getElementById('simWordPage');
+        const simScanOverlay = document.getElementById('simScanOverlay');
+        const simSidebarStatus = document.getElementById('simSidebarStatus');
+        const simActionBtn = document.getElementById('simActionBtn');
+
+        const simSubGov = document.getElementById('simSubGov');
+        const simCountry1 = document.getElementById('simCountry1');
+        const simCountry2 = document.getElementById('simCountry2');
+        const simDocTitle = document.getElementById('simDocTitle');
+        const simDocParagraph = document.getElementById('simDocParagraph');
+
+        const rule1 = document.getElementById('rule1');
+        const rule2 = document.getElementById('rule2');
+        const rule3 = document.getElementById('rule3');
+        const rule4 = document.getElementById('rule4');
+
+        let simulatorTimer = null;
+
+        function runSimulatorCycle() {
+            // Step 1: Initial state (Reset)
+            simWordPage.classList.remove('fixed-state');
+            simSubGov.className = 'error-border';
+            simCountry1.className = 'error-border bold-caps';
+            simCountry2.className = 'error-border italic-line';
+            simDocTitle.className = 'error-border bold-caps';
+            simDocParagraph.className = 'error-border indent-text';
+
+            rule1.className = 'sim-rule';
+            rule2.className = 'sim-rule';
+            rule3.className = 'sim-rule';
+            rule4.className = 'sim-rule';
+
+            simSidebarStatus.textContent = 'Sẵn sàng kiểm tra...';
+            simSidebarStatus.style.color = '#cbd5e1';
+            simActionBtn.textContent = 'Quét lỗi';
+            simActionBtn.className = 'sim-action-btn active-btn';
+            simScanOverlay.classList.remove('scanning');
+
+            // Step 2: Click & Scan (At 1s)
+            setTimeout(() => {
+                simActionBtn.textContent = 'Đang quét...';
+                simSidebarStatus.textContent = 'Đang rà soát văn bản...';
+                simScanOverlay.classList.add('scanning');
+            }, 1000);
+
+            // Step 3: Detect Errors (At 2.2s)
+            setTimeout(() => {
+                simScanOverlay.classList.remove('scanning');
+                simSidebarStatus.textContent = 'Phát hiện 4 lỗi thể thức!';
+                simSidebarStatus.style.color = '#ef4444';
+                
+                rule1.className = 'sim-rule detected';
+                rule2.className = 'sim-rule detected';
+                rule3.className = 'sim-rule detected';
+                rule4.className = 'sim-rule detected';
+                
+                simActionBtn.textContent = 'Sửa lỗi (1-Click)';
+                simActionBtn.className = 'sim-action-btn active-btn pulse-animation';
+            }, 2500);
+
+            // Step 4: Fix applied (At 3.7s)
+            setTimeout(() => {
+                simActionBtn.classList.remove('pulse-animation');
+                simActionBtn.textContent = 'Đang sửa...';
+                simSidebarStatus.textContent = 'Đang tự động chuẩn hóa...';
+                simSidebarStatus.style.color = '#cbd5e1';
+            }, 3700);
+
+            // Step 5: Finished (At 4.2s)
+            setTimeout(() => {
+                simWordPage.classList.add('fixed-state');
+                simSidebarStatus.textContent = 'Sửa xong! Đạt chuẩn 100%';
+                simSidebarStatus.style.color = '#10b981';
+                
+                rule1.className = 'sim-rule fixed';
+                rule2.className = 'sim-rule fixed';
+                rule3.className = 'sim-rule fixed';
+                rule4.className = 'sim-rule fixed';
+
+                simActionBtn.textContent = 'Hoàn tất';
+                simActionBtn.className = 'sim-action-btn';
+            }, 4400);
+        }
+
+        // Start Loop
+        function startSimulator() {
+            runSimulatorCycle();
+            simulatorTimer = setInterval(runSimulatorCycle, 6500); // 6.5s loop
+        }
+
+        startSimulator();
+    </script>
+</body>
+
+</html>
