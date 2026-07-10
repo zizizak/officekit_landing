@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>https://officekit-one.vercel.app/</loc>
+      <loc>https://officekit.wpspeedy.net/</loc>
       <lastmod>2026-07-10</lastmod>
       <changefreq>monthly</changefreq>
       <priority>1.0</priority>
    </url>
    <url>
-      <loc>https://officekit-one.vercel.app/landing</loc>
+      <loc>https://officekit.wpspeedy.net/landing</loc>
       <lastmod>2026-07-10</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://officekit-one.vercel.app/huongdan</loc>
+      <loc>https://officekit.wpspeedy.net/huongdan</loc>
       <lastmod>2026-07-10</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
