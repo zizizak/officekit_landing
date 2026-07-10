@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/landing", "destination": "/landingpage.html" },
+    { "source": "/nd30", "destination": "/landingpage.html" },
+    { "source": "/ai-audit", "destination": "/landingpage.html" },
+    { "source": "/huongdan", "destination": "/huongdan.html" }
+  ]
+}
