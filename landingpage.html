@@ -2209,7 +2209,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         startSimulator();
+
+        // Track GA4 event on download buttons
+        document.querySelectorAll('a[href*="drive.google.com"]').forEach(function(el) {
+            el.addEventListener("click", function () {
+                gtag("event", "download_click", {
+                    file_name: "OfficeKit",
+                    page_location: window.location.href
+                });
+                console.log("GA4 Event Sent: download_click for OfficeKit on", window.location.href);
+            });
+        });
     </script>
 </body>
-
 </html>
